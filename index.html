@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  
+  <!-- Primary Meta Tags -->
+  <title>Mystic Arts - Ancient Chinese Divination</title>
+  <meta name="title" content="Mystic Arts - Ancient Chinese Divination">
+  <meta name="description" content="Experience the ancient wisdom of Chinese divination through BaZi, I Ching, Tarot, Face Reading, and Daily Fortune">
+  
+  <!-- Theme Color - Dark background to match app design -->
+  <meta name="theme-color" content="#0f0a08">
+  
+  <!-- Apple iOS Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Mystic Arts">
+  
+  <!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icons/icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-192x192.png">
+  <link rel="apple-touch-icon" sizes="167x167" href="/icons/icon-192x192.png">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/icons/icon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-72x72.png">
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json">
+  
+  <!-- Microsoft Tiles -->
+  <meta name="msapplication-TileColor" content="#0f0a08">
+  <meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mystic Arts - Ancient Chinese Divination">
+  <meta property="og:description" content="Experience the ancient wisdom of Chinese divination through BaZi, I Ching, Tarot, Face Reading, and Daily Fortune">
+  <meta property="og:image" content="/icons/icon-512x512.png">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Mystic Arts - Ancient Chinese Divination">
+  <meta property="twitter:description" content="Experience the ancient wisdom of Chinese divination through BaZi, I Ching, Tarot, Face Reading, and Daily Fortune">
+  <meta property="twitter:image" content="/icons/icon-512x512.png">
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Critical CSS for instant dark background -->
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: #0f0a08;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+    
+    /* iOS Safe Area support */
+    body {
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+    
+    #root {
+      min-height: 100vh;
+      min-height: 100dvh;
+      background-color: #0f0a08;
+    }
+    
+    /* Prevent white flash on load */
+    #root:empty {
+      background-color: #0f0a08;
+      min-height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>

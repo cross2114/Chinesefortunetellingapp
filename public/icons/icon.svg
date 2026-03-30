@@ -1,0 +1,59 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" fill="#0f0a08"/>
+  
+  <!-- Gradient overlay -->
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#D4A76A;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#D4A76A;stop-opacity:0" />
+    </radialGradient>
+    
+    <linearGradient id="hexGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#D4A76A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C19A6B;stop-opacity:0.8" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Glow effect -->
+  <circle cx="256" cy="256" r="200" fill="url(#glow)"/>
+  
+  <!-- Hexagon shape -->
+  <path 
+    d="M 256 96 L 396 176 L 396 336 L 256 416 L 116 336 L 116 176 Z" 
+    fill="none" 
+    stroke="url(#hexGradient)" 
+    stroke-width="3"
+  />
+  
+  <!-- Inner hexagon -->
+  <path 
+    d="M 256 136 L 366 196 L 366 316 L 256 376 L 146 316 L 146 196 Z" 
+    fill="rgba(212, 167, 106, 0.1)" 
+    stroke="url(#hexGradient)" 
+    stroke-width="2"
+  />
+  
+  <!-- Chinese character 玄 (Xuan - Mystical) -->
+  <text 
+    x="256" 
+    y="290" 
+    font-family="'Noto Serif SC', serif" 
+    font-size="140" 
+    font-weight="500"
+    fill="url(#hexGradient)" 
+    text-anchor="middle" 
+    dominant-baseline="middle"
+  >玄</text>
+  
+  <!-- Decorative circles at hexagon corners -->
+  <circle cx="256" cy="96" r="6" fill="#D4A76A" opacity="0.6"/>
+  <circle cx="396" cy="176" r="6" fill="#D4A76A" opacity="0.6"/>
+  <circle cx="396" cy="336" r="6" fill="#D4A76A" opacity="0.6"/>
+  <circle cx="256" cy="416" r="6" fill="#D4A76A" opacity="0.6"/>
+  <circle cx="116" cy="336" r="6" fill="#D4A76A" opacity="0.6"/>
+  <circle cx="116" cy="176" r="6" fill="#D4A76A" opacity="0.6"/>
+  
+  <!-- Center accent circle -->
+  <circle cx="256" cy="256" r="4" fill="#D4A76A" opacity="0.8"/>
+</svg>
