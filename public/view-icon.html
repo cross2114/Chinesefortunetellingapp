@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystic Arts 应用图标预览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .icon-container {
+            background: #f5f5f5;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .icon-wrapper {
+            display: inline-block;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        #appIcon {
+            width: 300px;
+            height: 300px;
+            border-radius: 15px;
+            display: block;
+        }
+        
+        .info {
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .info h2 {
+            color: #1e40af;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .info p {
+            color: #1e40af;
+            line-height: 1.6;
+            margin: 5px 0;
+        }
+        
+        .steps {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .steps h2 {
+            color: #92400e;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .steps ol {
+            margin-left: 20px;
+            color: #92400e;
+        }
+        
+        .steps li {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        
+        .steps strong {
+            color: #b45309;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            flex: 1;
+            min-width: 200px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #10b981;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+        }
+        
+        .success {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .success p {
+            color: #065f46;
+            margin: 5px 0;
+        }
+        
+        .emoji {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            #appIcon {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .btn {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><span class="emoji">🎨</span>Mystic Arts 应用图标</h1>
+        <p class="subtitle">Bundle ID: com.mininxt.fatum</p>
+        
+        <div class="icon-container">
+            <div class="icon-wrapper">
+                <img id="appIcon" src="./icons/app-icon-1024.svg" alt="Mystic Arts App Icon">
+            </div>
+        </div>
+        
+        <div class="info">
+            <h2><span class="emoji">✨</span>图标设计说明</h2>
+            <p><strong>风格</strong>：敦煌壁画美学 + 现代神秘主义</p>
+            <p><strong>主要元素</strong>：汉字"玄"、太极阴阳、八卦八角形</p>
+            <p><strong>配色</strong>：赭石红、土黄金、石青蓝、深色背景</p>
+            <p><strong>尺寸</strong>：1024 x 1024 像素</p>
+        </div>
+        
+        <div class="steps">
+            <h2><span class="emoji">📱</span>下一步：生成所有尺寸</h2>
+            <ol>
+                <li><strong>右键点击上面的图标</strong> → 选择"将图像另存为..."</li>
+                <li>保存到<strong>桌面</strong>，文件名改为：<code>icon-1024.png</code></li>
+                <li>点击下面的按钮访问AppIcon.co</li>
+                <li>上传刚才保存的PNG文件</li>
+                <li>勾选 ☑️ iPhone 和 ☑️ iPad</li>
+                <li>点击 <strong>Generate</strong> 生成</li>
+                <li>下载生成的zip文件</li>
+                <li>解压得到 <code>AppIcon.appiconset</code> 文件夹</li>
+            </ol>
+        </div>
+        
+        <div class="button-group">
+            <a href="https://www.appicon.co/" target="_blank" class="btn btn-primary">
+                <span class="emoji">🚀</span>打开 AppIcon.co
+            </a>
+            <a href="https://cloudconvert.com/svg-to-png" target="_blank" class="btn btn-secondary">
+                <span class="emoji">🔄</span>在线转换 SVG → PNG
+            </a>
+        </div>
+        
+        <div class="success">
+            <p><span class="emoji">💡</span><strong>提示</strong>：如果右键保存不行，可以截图：</p>
+            <p>1. 按 <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>4</kbd></p>
+            <p>2. 按 <kbd>空格键</kbd>（光标变成相机）</p>
+            <p>3. 点击这个浏览器窗口</p>
+            <p>4. 截图自动保存到桌面</p>
+        </div>
+    </div>
+    
+    <script>
+        // 检测图标是否加载成功
+        const icon = document.getElementById('appIcon');
+        
+        icon.addEventListener('error', function() {
+            this.alt = '图标加载失败，请检查文件路径';
+            this.style.border = '2px dashed #ef4444';
+        });
+        
+        icon.addEventListener('load', function() {
+            console.log('✅ 图标加载成功！');
+        });
+        
+        // 添加右键保存提示
+        icon.addEventListener('contextmenu', function(e) {
+            setTimeout(() => {
+                alert('💾 记得保存为 PNG 格式，文件名：icon-1024.png');
+            }, 100);
+        });
+    </script>
+</body>
+</html>

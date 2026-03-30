@@ -9,6 +9,7 @@ import { useNavigate, Link } from 'react-router';
 import { AlertCircle, Crown, Sparkles, Star } from 'lucide-react';
 import { Card3D } from '../components/Card3D';
 import { FloatingOrbs, DecorativeSymbol } from '../components/FloatingElements';
+import { PaywallModal } from '../components/PaywallModal';
 
 const elements = ['Wood', 'Fire', 'Earth', 'Metal', 'Water'];
 const animals = ['Rat', 'Ox', 'Tiger', 'Rabbit', 'Dragon', 'Snake', 'Horse', 'Goat', 'Monkey', 'Rooster', 'Dog', 'Pig'];
@@ -37,6 +38,7 @@ export function BaZi() {
     hour: '',
   });
   const [result, setResult] = useState<any>(null);
+  const [showPaywall, setShowPaywall] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,6 +49,7 @@ export function BaZi() {
     }
 
     if (!canUseReading('bazi')) {
+      setShowPaywall(true);
       return;
     }
     
@@ -346,6 +349,15 @@ export function BaZi() {
           )}
         </div>
       </Layout>
+
+      {/* Paywall Modal */}
+      <PaywallModal
+        isOpen={showPaywall}
+        onClose={() => setShowPaywall(false)}
+        feature="BaZi"
+        readingsUsed={user?.readingsUsed?.bazi || 0}
+        readingsLimit={1}
+      />
     </div>
   );
 }

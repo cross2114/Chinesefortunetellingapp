@@ -9,46 +9,63 @@ import { Login } from "./pages/Login";
 import { Signup } from "./pages/Signup";
 import { Profile } from "./pages/Profile";
 import { Subscription } from "./pages/Subscription";
+import { Privacy } from "./pages/Privacy";
+import { Terms } from "./pages/Terms";
+import { RootLayout } from "./components/RootLayout";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    Component: Home,
-  },
-  {
-    path: "/login",
-    Component: Login,
-  },
-  {
-    path: "/signup",
-    Component: Signup,
-  },
-  {
-    path: "/profile",
-    Component: Profile,
-  },
-  {
-    path: "/subscription",
-    Component: Subscription,
-  },
-  {
-    path: "/bazi",
-    Component: BaZi,
-  },
-  {
-    path: "/iching",
-    Component: IChing,
-  },
-  {
-    path: "/tarot",
-    Component: Tarot,
-  },
-  {
-    path: "/face-reading",
-    Component: FaceReading,
-  },
-  {
-    path: "/daily-fortune",
-    Component: DailyFortune,
+    Component: RootLayout,
+    children: [
+      {
+        index: true,
+        Component: Home,
+      },
+      {
+        path: "login",
+        Component: Login,
+      },
+      {
+        path: "signup",
+        Component: Signup,
+      },
+      {
+        path: "profile",
+        Component: Profile,
+      },
+      {
+        path: "subscription",
+        Component: Subscription,
+      },
+      {
+        path: "bazi",
+        Component: BaZi,
+      },
+      {
+        path: "iching",
+        Component: IChing,
+      },
+      {
+        path: "tarot",
+        Component: Tarot,
+      },
+      {
+        path: "face-reading",
+        Component: FaceReading,
+      },
+      {
+        path: "daily-fortune",
+        Component: DailyFortune,
+      },
+      {
+        path: "privacy",
+        Component: Privacy,
+      },
+      {
+        path: "terms",
+        Component: Terms,
+      },
+    ],
   },
 ]);

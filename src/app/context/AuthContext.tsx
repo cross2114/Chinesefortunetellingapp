@@ -4,9 +4,11 @@ interface User {
   id: string;
   email: string;
   name: string;
-  subscription: 'free' | 'premium' | 'ultimate';
+  subscription: 'free' | 'premium';
   avatar?: string;
   joinedDate: string;
+  trialEndsAt?: string; // 试用结束时间
+  subscriptionStartedAt?: string; // 订阅开始时间
   readingsUsed: {
     bazi: number;
     iching: number;
@@ -20,18 +22,22 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<void>;
   signup: (email: string, password: string, name: string) => Promise<void>;
   logout: () => void;
-  updateSubscription: (plan: 'free' | 'premium' | 'ultimate') => void;
+  updateSubscription: (plan: 'free' | 'premium') => void;
   incrementReading: (type: keyof User['readingsUsed']) => void;
   canUseReading: (type: keyof User['readingsUsed']) => boolean;
+  isInTrial: () => boolean;
+  getTrialDaysLeft: () => number;
+  isPremiumActive: () => boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const READING_LIMITS = {
   free: { bazi: 1, iching: 2, tarot: 2, face: 1 },
-  premium: { bazi: 10, iching: 20, tarot: 20, face: 10 },
-  ultimate: { bazi: Infinity, iching: Infinity, tarot: Infinity, face: Infinity },
+  premium: { bazi: Infinity, iching: Infinity, tarot: Infinity, face: Infinity },
 };
+
+const TRIAL_DAYS = 7;
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
@@ -40,7 +46,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Check localStorage for existing user
     const savedUser = localStorage.getItem('mysticArtsUser');
     if (savedUser) {
-      setUser(JSON.parse(savedUser));
+      const parsedUser = JSON.parse(savedUser);
+      setUser(parsedUser);
+      
+      // Auto-upgrade to free if trial expired
+      if (parsedUser.subscription === 'premium' && parsedUser.trialEndsAt) {
+        const trialEnd = new Date(parsedUser.trialEndsAt);
+        const now = new Date();
+        if (now > trialEnd && !parsedUser.subscriptionStartedAt) {
+          // Trial expired and no paid subscription
+          const downgradedUser = { ...parsedUser, subscription: 'free' as const };
+          setUser(downgradedUser);
+          localStorage.setItem('mysticArtsUser', JSON.stringify(downgradedUser));
+        }
+      }
     }
   }, []);
 
@@ -48,12 +67,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Mock login - in real app, this would call an API
     await new Promise(resolve => setTimeout(resolve, 1000));
     
+    const now = new Date();
+    const trialEnd = new Date(now.getTime() + TRIAL_DAYS * 24 * 60 * 60 * 1000);
+    
     const mockUser: User = {
       id: Math.random().toString(36).substr(2, 9),
       email,
       name: email.split('@')[0],
-      subscription: 'free',
-      joinedDate: new Date().toISOString(),
+      subscription: 'premium', // Start with trial
+      joinedDate: now.toISOString(),
+      trialEndsAt: trialEnd.toISOString(),
       readingsUsed: { bazi: 0, iching: 0, tarot: 0, face: 0 },
     };
     
@@ -65,12 +88,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Mock signup
     await new Promise(resolve => setTimeout(resolve, 1000));
     
+    const now = new Date();
+    const trialEnd = new Date(now.getTime() + TRIAL_DAYS * 24 * 60 * 60 * 1000);
+    
     const mockUser: User = {
       id: Math.random().toString(36).substr(2, 9),
       email,
       name,
-      subscription: 'free',
-      joinedDate: new Date().toISOString(),
+      subscription: 'premium', // Start with trial
+      joinedDate: now.toISOString(),
+      trialEndsAt: trialEnd.toISOString(),
       readingsUsed: { bazi: 0, iching: 0, tarot: 0, face: 0 },
     };
     
@@ -83,9 +110,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem('mysticArtsUser');
   };
 
-  const updateSubscription = (plan: 'free' | 'premium' | 'ultimate') => {
+  const updateSubscription = (plan: 'free' | 'premium') => {
     if (user) {
-      const updatedUser = { ...user, subscription: plan };
+      const now = new Date();
+      const updatedUser = { 
+        ...user, 
+        subscription: plan,
+        subscriptionStartedAt: plan === 'premium' ? now.toISOString() : undefined,
+        trialEndsAt: undefined, // Clear trial when subscribing
+      };
       setUser(updatedUser);
       localStorage.setItem('mysticArtsUser', JSON.stringify(updatedUser));
     }
@@ -107,13 +140,64 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const canUseReading = (type: keyof User['readingsUsed']) => {
     if (!user) return false;
-    const limit = READING_LIMITS[user.subscription][type];
+    
+    // Check if premium is active (trial or paid)
+    if (isPremiumActive()) {
+      return true;
+    }
+    
+    // Free tier limits
+    const limit = READING_LIMITS.free[type];
     return user.readingsUsed[type] < limit;
+  };
+
+  const isInTrial = () => {
+    if (!user || !user.trialEndsAt || user.subscriptionStartedAt) return false;
+    const trialEnd = new Date(user.trialEndsAt);
+    const now = new Date();
+    return now < trialEnd;
+  };
+
+  const getTrialDaysLeft = () => {
+    if (!user || !user.trialEndsAt) return 0;
+    const trialEnd = new Date(user.trialEndsAt);
+    const now = new Date();
+    const diffTime = trialEnd.getTime() - now.getTime();
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return Math.max(0, diffDays);
+  };
+
+  const isPremiumActive = () => {
+    if (!user) return false;
+    if (user.subscription === 'free') return false;
+    
+    // If has paid subscription
+    if (user.subscriptionStartedAt) return true;
+    
+    // If in trial period
+    if (user.trialEndsAt) {
+      const trialEnd = new Date(user.trialEndsAt);
+      const now = new Date();
+      return now < trialEnd;
+    }
+    
+    return false;
   };
 
   return (
     <AuthContext.Provider
-      value={{ user, login, signup, logout, updateSubscription, incrementReading, canUseReading }}
+      value={{ 
+        user, 
+        login, 
+        signup, 
+        logout, 
+        updateSubscription, 
+        incrementReading, 
+        canUseReading,
+        isInTrial,
+        getTrialDaysLeft,
+        isPremiumActive,
+      }}
     >
       {children}
     </AuthContext.Provider>

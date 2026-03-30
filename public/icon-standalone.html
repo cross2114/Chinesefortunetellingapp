@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Mystic Arts Icon - 右键保存</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .instruction {
+            background: #fef3c7;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #f59e0b;
+        }
+        .instruction strong {
+            color: #92400e;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .instruction p {
+            color: #78350f;
+            margin: 5px 0;
+        }
+        svg {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .button {
+            display: inline-block;
+            margin: 20px 10px;
+            padding: 15px 30px;
+            background: #3b82f6;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .button:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Mystic Arts 应用图标</h1>
+        
+        <svg width="400" height="400" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+            <!-- Definitions -->
+            <defs>
+                <!-- Background gradient -->
+                <radialGradient id="bgGrad" cx="50%" cy="50%" r="60%">
+                    <stop offset="0%" style="stop-color:#1a1410;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#0f0a08;stop-opacity:1" />
+                </radialGradient>
+                
+                <!-- Golden glow -->
+                <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" style="stop-color:#D4A574;stop-opacity:0.4" />
+                    <stop offset="50%" style="stop-color:#B8543E;stop-opacity:0.2" />
+                    <stop offset="100%" style="stop-color:#0f0a08;stop-opacity:0" />
+                </radialGradient>
+                
+                <!-- Ochre gradient -->
+                <linearGradient id="ochre" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#D4A574;stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:#B8543E;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#A64A32;stop-opacity:1" />
+                </linearGradient>
+                
+                <!-- Blue gradient -->
+                <linearGradient id="blue" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#5A7FA5;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#4A6FA5;stop-opacity:1" />
+                </linearGradient>
+                
+                <!-- Glow filter -->
+                <filter id="glowFilter">
+                    <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+            
+            <!-- Background -->
+            <rect width="1024" height="1024" fill="url(#bgGrad)" rx="180"/>
+            
+            <!-- Glow -->
+            <circle cx="512" cy="512" r="400" fill="url(#glow)"/>
+            
+            <!-- Circles -->
+            <circle cx="512" cy="512" r="420" fill="none" stroke="url(#ochre)" stroke-width="2" opacity="0.3"/>
+            <circle cx="512" cy="512" r="440" fill="none" stroke="url(#ochre)" stroke-width="1" opacity="0.2"/>
+            
+            <!-- Octagon -->
+            <g opacity="0.4" stroke="url(#blue)" stroke-width="2" fill="none">
+                <path d="M 512 132 L 689 236 L 789 413 L 789 611 L 689 788 L 512 892 L 335 788 L 235 611 L 235 413 L 335 236 Z"/>
+                <path d="M 512 182 L 659 266 L 739 443 L 739 581 L 659 758 L 512 842 L 365 758 L 285 581 L 285 443 L 365 266 Z" opacity="0.6"/>
+            </g>
+            
+            <!-- Corner circles -->
+            <g fill="url(#ochre)" opacity="0.2">
+                <circle cx="512" cy="132" r="8"/>
+                <circle cx="689" cy="236" r="6"/>
+                <circle cx="789" cy="413" r="8"/>
+                <circle cx="789" cy="611" r="6"/>
+                <circle cx="512" cy="892" r="8"/>
+                <circle cx="335" cy="788" r="6"/>
+                <circle cx="235" cy="611" r="8"/>
+                <circle cx="235" cy="413" r="6"/>
+            </g>
+            
+            <!-- Central frame -->
+            <circle cx="512" cy="512" r="320" fill="none" stroke="url(#ochre)" stroke-width="3" opacity="0.5"/>
+            <circle cx="512" cy="512" r="315" fill="rgba(212, 167, 116, 0.05)"/>
+            
+            <!-- Yin-Yang -->
+            <g filter="url(#glowFilter)">
+                <circle cx="512" cy="512" r="240" fill="none" stroke="url(#ochre)" stroke-width="4"/>
+                
+                <g opacity="0.9">
+                    <path d="M 512 272 A 240 240 0 0 1 512 752 A 120 120 0 0 0 512 512 A 120 120 0 0 1 512 272 Z" 
+                          fill="url(#ochre)" opacity="0.3"/>
+                    <path d="M 512 272 A 240 240 0 0 0 512 752 A 120 120 0 0 1 512 512 A 120 120 0 0 0 512 272 Z" 
+                          fill="url(#blue)" opacity="0.3"/>
+                    
+                    <circle cx="512" cy="392" r="30" fill="url(#blue)" opacity="0.6"/>
+                    <circle cx="512" cy="632" r="30" fill="url(#ochre)" opacity="0.6"/>
+                    <circle cx="512" cy="392" r="12" fill="#0f0a08" opacity="0.8"/>
+                    <circle cx="512" cy="632" r="12" fill="#0f0a08" opacity="0.8"/>
+                </g>
+            </g>
+            
+            <!-- Character -->
+            <text 
+                x="512" 
+                y="565" 
+                font-family="'Noto Serif SC', 'STSong', 'SimSun', serif" 
+                font-size="240" 
+                font-weight="600"
+                fill="url(#ochre)" 
+                text-anchor="middle" 
+                dominant-baseline="middle"
+                opacity="0.85"
+                filter="url(#glowFilter)"
+            >玄</text>
+            
+            <!-- Particles -->
+            <g fill="url(#ochre)" opacity="0.3">
+                <circle cx="380" cy="420" r="3"/>
+                <circle cx="420" cy="480" r="2"/>
+                <circle cx="360" cy="540" r="3"/>
+                <circle cx="400" cy="600" r="2"/>
+                <circle cx="644" cy="420" r="3"/>
+                <circle cx="604" cy="480" r="2"/>
+                <circle cx="664" cy="540" r="3"/>
+                <circle cx="624" cy="600" r="2"/>
+                <circle cx="480" cy="360" r="2"/>
+                <circle cx="544" cy="360" r="2"/>
+                <circle cx="480" cy="664" r="2"/>
+                <circle cx="544" cy="664" r="2"/>
+            </g>
+            
+            <!-- Corner decorations -->
+            <g stroke="url(#ochre)" stroke-width="2" fill="none" opacity="0.15">
+                <path d="M 200 200 Q 150 150 100 200" stroke-linecap="round"/>
+                <path d="M 824 200 Q 874 150 924 200" stroke-linecap="round"/>
+                <path d="M 200 824 Q 150 874 100 824" stroke-linecap="round"/>
+                <path d="M 824 824 Q 874 874 924 824" stroke-linecap="round"/>
+            </g>
+            
+            <!-- Stars -->
+            <g fill="#D4A574" opacity="0.4">
+                <circle cx="256" cy="256" r="2"/>
+                <circle cx="768" cy="256" r="2"/>
+                <circle cx="256" cy="768" r="2"/>
+                <circle cx="768" cy="768" r="2"/>
+                <circle cx="180" cy="512" r="1.5"/>
+                <circle cx="844" cy="512" r="1.5"/>
+                <circle cx="512" cy="180" r="1.5"/>
+                <circle cx="512" cy="844" r="1.5"/>
+            </g>
+            
+            <!-- Center glow -->
+            <circle cx="512" cy="512" r="6" fill="url(#ochre)" opacity="0.8">
+                <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
+            </circle>
+        </svg>
+        
+        <div class="instruction">
+            <strong>📱 如何保存这个图标：</strong>
+            <p>1️⃣ 右键点击上面的图标</p>
+            <p>2️⃣ 选择"将图像另存为..."</p>
+            <p>3️⃣ 保存到桌面，文件名：<code>icon-1024.png</code></p>
+            <p style="margin-top:15px;">或者按 <kbd>Cmd+Shift+4</kbd> → <kbd>空格</kbd> → 点击窗口截图</p>
+        </div>
+        
+        <a href="https://www.appicon.co/" target="_blank" class="button">
+            🚀 打开 AppIcon.co 生成所有尺寸
+        </a>
+        
+        <a href="https://cloudconvert.com/svg-to-png" target="_blank" class="button">
+            🔄 在线转换工具
+        </a>
+    </div>
+    
+    <script>
+        // 阻止默认的拖拽行为
+        document.querySelector('svg').addEventListener('dragstart', function(e) {
+            e.preventDefault();
+        });
+    </script>
+</body>
+</html>

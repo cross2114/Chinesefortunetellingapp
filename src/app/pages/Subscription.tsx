@@ -31,45 +31,26 @@ const plans = [
   {
     id: 'premium',
     name: 'Premium',
-    price: 19,
+    price: 1,
     period: 'month',
-    icon: Zap,
-    description: 'Unlock deeper insights',
-    features: [
-      '10 BaZi Readings per month',
-      '20 I Ching Consultations',
-      '20 Tarot Spreads',
-      '10 Face Reading Analyses',
-      'Unlimited Daily Fortune',
-      'Detailed interpretations',
-      'Priority support',
-      'Save reading history',
-    ],
-    color: 'accent',
-    gradient: 'from-accent/20 to-secondary/20',
-    popular: true,
-  },
-  {
-    id: 'ultimate',
-    name: 'Ultimate',
-    price: 49,
-    period: 'month',
+    trial: '7 days free',
     icon: Crown,
-    description: 'Complete mystical mastery',
+    description: 'Unlimited mystical wisdom',
     features: [
+      '🎉 First 7 days completely FREE',
       'Unlimited BaZi Readings',
       'Unlimited I Ching Consultations',
       'Unlimited Tarot Spreads',
       'Unlimited Face Reading',
       'Unlimited Daily Fortune',
-      'Premium interpretations',
-      'Personal consultant',
-      'Exclusive content',
-      'Advanced analytics',
-      'Early access to new features',
+      'Detailed interpretations',
+      'Reading history & favorites',
+      'Priority support',
+      'Cancel anytime',
     ],
-    color: 'secondary',
-    gradient: 'from-secondary/20 to-accent/30',
+    color: 'accent',
+    gradient: 'from-accent/20 to-secondary/20',
+    popular: true,
   },
 ];
 
@@ -320,7 +301,15 @@ export function Subscription() {
                     },
                     {
                       q: 'Is there a free trial?',
-                      a: 'Our Free plan allows you to explore the platform. Premium and Ultimate plans offer full access from day one.'
+                      a: 'Yes! Premium plan includes a 7-day free trial. No credit card required. Cancel anytime during the trial and you won\'t be charged.'
+                    },
+                    {
+                      q: 'How does billing work?',
+                      a: 'After your 7-day free trial, you\'ll be charged $1/month. You can cancel anytime from your profile page with no commitment.'
+                    },
+                    {
+                      q: 'What happens when my trial ends?',
+                      a: 'Your trial automatically converts to a paid subscription at $1/month. You\'ll receive email reminders before you\'re charged.'
                     }
                   ].map((faq, index) => (
                     <motion.div
