@@ -25,6 +25,13 @@ const config: CapacitorConfig = {
     
     // Status bar configuration
     limitsNavigationsToAppBoundDomains: true,
+    
+    // Privacy permissions
+    preferences: {
+      'NSCameraUsageDescription': 'We need camera access to analyze your facial features for fortune reading',
+      'NSPhotoLibraryUsageDescription': 'We need photo library access to let you upload photos for face reading',
+      'NSPhotoLibraryAddUsageDescription': 'We need access to save photos for your face reading records',
+    },
   },
 
   // Android-specific configuration
