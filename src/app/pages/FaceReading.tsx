@@ -5,6 +5,8 @@ import { Card } from '../components/ui/card';
 import { motion } from 'motion/react';
 import { Upload, Camera, X } from 'lucide-react';
 import { FloatingOrbs, DecorativeSymbol } from '../components/FloatingElements';
+import { Camera as CapacitorCamera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Capacitor } from '@capacitor/core';
 
 const faceFeatures = [
   {
@@ -59,20 +61,56 @@ export function FaceReading() {
   const [result, setResult] = useState<any>(null);
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const cameraInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setUploadedImage(e.target?.result as string);
-      };
-      reader.readAsDataURL(file);
+  // 使用Capacitor Camera拍照
+  const handleTakePhoto = async () => {
+    try {
+      // 检查是否在原生环境
+      if (Capacitor.isNativePlatform()) {
+        const image = await CapacitorCamera.getPhoto({
+          quality: 90,
+          allowEditing: false,
+          resultType: CameraResultType.DataUrl,
+          source: CameraSource.Camera, // 强制使用相机
+        });
+
+        if (image.dataUrl) {
+          setUploadedImage(image.dataUrl);
+        }
+      } else {
+        // 浏览器环境，使用文件输入
+        fileInputRef.current?.click();
+      }
+    } catch (error) {
+      console.error('Camera error:', error);
+      // 如果用户取消，不显示错误
     }
   };
 
-  const handleCameraCapture = (event: React.ChangeEvent<HTMLInputElement>) => {
+  // 从相册选择照片
+  const handleSelectPhoto = async () => {
+    try {
+      if (Capacitor.isNativePlatform()) {
+        const image = await CapacitorCamera.getPhoto({
+          quality: 90,
+          allowEditing: false,
+          resultType: CameraResultType.DataUrl,
+          source: CameraSource.Photos, // 从相册选择
+        });
+
+        if (image.dataUrl) {
+          setUploadedImage(image.dataUrl);
+        }
+      } else {
+        // 浏览器环境，使用文件输入
+        fileInputRef.current?.click();
+      }
+    } catch (error) {
+      console.error('Photo library error:', error);
+    }
+  };
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
@@ -105,13 +143,11 @@ export function FaceReading() {
     setResult(null);
     setUploadedImage(null);
     if (fileInputRef.current) fileInputRef.current.value = '';
-    if (cameraInputRef.current) cameraInputRef.current.value = '';
   };
 
   const removeImage = () => {
     setUploadedImage(null);
     if (fileInputRef.current) fileInputRef.current.value = '';
-    if (cameraInputRef.current) cameraInputRef.current.value = '';
   };
 
   return (
@@ -187,20 +223,12 @@ export function FaceReading() {
                     : 'Take a photo or upload from your device'}
                 </p>
                 
-                {/* Hidden file inputs */}
+                {/* Hidden file input - 仅用于浏览器环境 */}
                 <input
                   ref={fileInputRef}
                   type="file"
                   accept="image/*"
                   onChange={handleFileUpload}
-                  className="hidden"
-                />
-                <input
-                  ref={cameraInputRef}
-                  type="file"
-                  accept="image/*"
-                  capture="user"
-                  onChange={handleCameraCapture}
                   className="hidden"
                 />
                 
@@ -215,7 +243,7 @@ export function FaceReading() {
                 ) : (
                   <div className="flex gap-3">
                     <Button
-                      onClick={() => cameraInputRef.current?.click()}
+                      onClick={handleTakePhoto}
                       variant="outline"
                       className="flex-1 border-border hover:bg-accent/5"
                     >
@@ -223,7 +251,7 @@ export function FaceReading() {
                       Take Photo
                     </Button>
                     <Button
-                      onClick={() => fileInputRef.current?.click()}
+                      onClick={handleSelectPhoto}
                       variant="outline"
                       className="flex-1 border-border hover:bg-accent/5"
                     >

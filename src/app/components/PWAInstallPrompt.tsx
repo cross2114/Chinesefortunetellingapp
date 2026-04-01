@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Download, X } from 'lucide-react';
-import { ChineseCharacter } from './MysticParticles';
+import { Button } from './ui/button';
+import { Card } from './ui/card';
+import { safeLocalStorage, isNativeApp } from '../utils/storage';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -14,8 +16,13 @@ export function PWAInstallPrompt() {
   const [isInstalled, setIsInstalled] = useState(false);
 
   useEffect(() => {
+    // ⚠️ 不在原生APP中显示PWA安装提示
+    if (isNativeApp()) {
+      return;
+    }
+
     // Check if already installed
-    if (window.matchMedia('(display-mode: standalone)').matches) {
+    if (typeof window !== 'undefined' && window.matchMedia('(display-mode: standalone)').matches) {
       setIsInstalled(true);
       return;
     }
@@ -27,12 +34,13 @@ export function PWAInstallPrompt() {
       
       // Show prompt after a delay (don't be too aggressive)
       setTimeout(() => {
-        const hasSeenPrompt = localStorage.getItem('pwa-prompt-seen');
-        const lastDismissed = localStorage.getItem('pwa-prompt-dismissed');
+        const hasSeenPrompt = safeLocalStorage.getItem('pwa-prompt-seen');
+        const lastDismissed = safeLocalStorage.getItem('pwa-prompt-dismissed');
         
         // Don't show if dismissed within last 7 days
         if (lastDismissed) {
-          const daysSinceDismissed = (Date.now() - parseInt(lastDismissed)) / (1000 * 60 * 60 * 24);
+          const lastDismissedTime = parseInt(lastDismissed, 10);
+          const daysSinceDismissed = (Date.now() - lastDismissedTime) / (1000 * 60 * 60 * 24);
           if (daysSinceDismissed < 7) {
             return;
           }
@@ -41,24 +49,26 @@ export function PWAInstallPrompt() {
         // Show if never seen or after 7 days
         if (!hasSeenPrompt) {
           setShowPrompt(true);
-          localStorage.setItem('pwa-prompt-seen', 'true');
+          safeLocalStorage.setItem('pwa-prompt-seen', 'true');
         }
       }, 3000); // Wait 3 seconds before showing
     };
 
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
 
-    // Detect if app was installed
-    window.addEventListener('appinstalled', () => {
-      setIsInstalled(true);
-      setShowPrompt(false);
-      setDeferredPrompt(null);
-      console.log('PWA was installed successfully');
-    });
+      // Detect if app was installed
+      window.addEventListener('appinstalled', () => {
+        setIsInstalled(true);
+        setShowPrompt(false);
+        setDeferredPrompt(null);
+        console.log('PWA was installed successfully');
+      });
 
-    return () => {
-      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-    };
+      return () => {
+        window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+      };
+    }
   }, []);
 
   const handleInstall = async () => {
@@ -69,7 +79,7 @@ export function PWAInstallPrompt() {
 
     // Wait for the user's response
     const { outcome } = await deferredPrompt.userChoice;
-    
+
     console.log(`User response to install prompt: ${outcome}`);
     
     // Clear the deferredPrompt
@@ -79,7 +89,7 @@ export function PWAInstallPrompt() {
 
   const handleDismiss = () => {
     setShowPrompt(false);
-    localStorage.setItem('pwa-prompt-dismissed', Date.now().toString());
+    safeLocalStorage.setItem('pwa-prompt-dismissed', Date.now().toString());
   };
 
   if (isInstalled || !showPrompt) return null;
@@ -93,7 +103,7 @@ export function PWAInstallPrompt() {
           exit={{ opacity: 0, y: 100 }}
           className="fixed bottom-4 left-4 right-4 md:left-auto md:right-8 md:max-w-md z-50"
         >
-          <div className="relative border border-[#D4A76A]/30 bg-gradient-to-br from-[#1a1510]/95 to-[#0f0a08]/95 backdrop-blur-xl p-6 shadow-2xl">
+          <Card className="relative border border-[#D4A76A]/30 bg-gradient-to-br from-[#1a1510]/95 to-[#0f0a08]/95 backdrop-blur-xl p-6 shadow-2xl">
             {/* Decorative corners */}
             <div className="absolute top-0 left-0 w-4 h-4 border-l-2 border-t-2 border-[#D4A76A]/60" />
             <div className="absolute top-0 right-0 w-4 h-4 border-r-2 border-t-2 border-[#D4A76A]/60" />
@@ -129,13 +139,13 @@ export function PWAInstallPrompt() {
                 </p>
 
                 {/* Install button */}
-                <button
+                <Button
                   onClick={handleInstall}
                   className="w-full border border-[#D4A76A]/50 bg-gradient-to-r from-[#D4A76A]/20 to-[#C19A6B]/10 px-4 py-2.5 hover:bg-[#D4A76A]/30 transition-all group flex items-center justify-center gap-2"
                 >
                   <Download className="w-4 h-4 text-[#D4A76A] group-hover:animate-bounce" />
                   <span className="text-sm text-[#D4A76A] tracking-wider">INSTALL APP</span>
-                </button>
+                </Button>
               </div>
             </div>
 
@@ -146,7 +156,7 @@ export function PWAInstallPrompt() {
                 background: 'radial-gradient(circle at center, rgba(212, 167, 106, 0.3), transparent 70%)'
               }}
             />
-          </div>
+          </Card>
         </motion.div>
       )}
     </AnimatePresence>

@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { safeLocalStorage } from '../utils/storage';
 
 interface User {
   id: string;
@@ -44,21 +45,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     // Check localStorage for existing user
-    const savedUser = localStorage.getItem('mysticArtsUser');
+    const savedUser = safeLocalStorage.getItem('mysticArtsUser');
     if (savedUser) {
-      const parsedUser = JSON.parse(savedUser);
-      setUser(parsedUser);
-      
-      // Auto-upgrade to free if trial expired
-      if (parsedUser.subscription === 'premium' && parsedUser.trialEndsAt) {
-        const trialEnd = new Date(parsedUser.trialEndsAt);
-        const now = new Date();
-        if (now > trialEnd && !parsedUser.subscriptionStartedAt) {
-          // Trial expired and no paid subscription
-          const downgradedUser = { ...parsedUser, subscription: 'free' as const };
-          setUser(downgradedUser);
-          localStorage.setItem('mysticArtsUser', JSON.stringify(downgradedUser));
+      try {
+        const parsedUser = JSON.parse(savedUser);
+        setUser(parsedUser);
+        
+        // Auto-upgrade to free if trial expired
+        if (parsedUser.subscription === 'premium' && parsedUser.trialEndsAt) {
+          const trialEnd = new Date(parsedUser.trialEndsAt);
+          const now = new Date();
+          if (now > trialEnd && !parsedUser.subscriptionStartedAt) {
+            // Trial expired and no paid subscription
+            const downgradedUser = { ...parsedUser, subscription: 'free' as const };
+            setUser(downgradedUser);
+            safeLocalStorage.setItem('mysticArtsUser', JSON.stringify(downgradedUser));
+          }
         }
+      } catch (error) {
+        console.error('Failed to parse saved user:', error);
       }
     }
   }, []);
@@ -81,7 +86,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
     
     setUser(mockUser);
-    localStorage.setItem('mysticArtsUser', JSON.stringify(mockUser));
+    safeLocalStorage.setItem('mysticArtsUser', JSON.stringify(mockUser));
   };
 
   const signup = async (email: string, password: string, name: string) => {
@@ -102,12 +107,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
     
     setUser(mockUser);
-    localStorage.setItem('mysticArtsUser', JSON.stringify(mockUser));
+    safeLocalStorage.setItem('mysticArtsUser', JSON.stringify(mockUser));
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('mysticArtsUser');
+    safeLocalStorage.removeItem('mysticArtsUser');
   };
 
   const updateSubscription = (plan: 'free' | 'premium') => {
@@ -120,7 +125,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         trialEndsAt: undefined, // Clear trial when subscribing
       };
       setUser(updatedUser);
-      localStorage.setItem('mysticArtsUser', JSON.stringify(updatedUser));
+      safeLocalStorage.setItem('mysticArtsUser', JSON.stringify(updatedUser));
     }
   };
 
@@ -134,7 +139,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         },
       };
       setUser(updatedUser);
-      localStorage.setItem('mysticArtsUser', JSON.stringify(updatedUser));
+      safeLocalStorage.setItem('mysticArtsUser', JSON.stringify(updatedUser));
     }
   };
 
