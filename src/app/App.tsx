@@ -10,7 +10,6 @@ import { Capacitor } from '@capacitor/core';
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
-  const [appReady, setAppReady] = useState(false);
 
   useEffect(() => {
     // Register service worker (only in web)
@@ -18,34 +17,25 @@ export default function App() {
       registerServiceWorker();
     }
     
-    // Mark app as ready after a short delay
-    const timer = setTimeout(() => {
-      setAppReady(true);
-    }, 100);
-
-    return () => clearTimeout(timer);
+    // Hide native splash screen immediately and show our custom one
+    if (Capacitor.isNativePlatform()) {
+      CapacitorSplash.hide({ fadeOutDuration: 0 }).catch(err => {
+        console.log('Failed to hide native splash:', err);
+      });
+    }
   }, []);
 
-  const handleSplashComplete = async () => {
+  const handleSplashComplete = () => {
     setShowSplash(false);
-    
-    // Hide Capacitor splash screen (iOS/Android)
-    if (Capacitor.isNativePlatform()) {
-      try {
-        await CapacitorSplash.hide({ fadeOutDuration: 300 });
-      } catch (error) {
-        console.log('Native splash screen not available');
-      }
-    }
   };
 
   return (
     <>
-      {/* Custom splash screen for web and native */}
-      {showSplash && appReady && (
+      {/* Custom splash screen - shown immediately */}
+      {showSplash && (
         <CustomSplashScreen 
           onComplete={handleSplashComplete}
-          duration={2000}
+          duration={3000}
         />
       )}
       

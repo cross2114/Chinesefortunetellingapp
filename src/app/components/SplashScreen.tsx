@@ -11,7 +11,7 @@ interface SplashScreenProps {
   duration?: number; // 显示时长（毫秒）
 }
 
-export function SplashScreen({ onComplete, duration = 2000 }: SplashScreenProps) {
+export function SplashScreen({ onComplete, duration = 3500 }: SplashScreenProps) {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export function SplashScreen({ onComplete, duration = 2000 }: SplashScreenProps)
       setIsVisible(false);
       setTimeout(() => {
         onComplete?.();
-      }, 500); // 等待退出动画完成
+      }, 600); // 等待退出动画完成
     }, duration);
 
     return () => clearTimeout(timer);

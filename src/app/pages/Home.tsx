@@ -176,7 +176,7 @@ export function Home() {
     <div 
       className="relative w-full bg-gradient-to-br from-[#1a1510] via-[#0f0a08] to-[#1a0f0a] overflow-hidden touch-none"
       style={{ 
-        height: `${viewportHeight}px`,
+        minHeight: `${viewportHeight}px`,
         paddingTop: 'env(safe-area-inset-top)',
         paddingBottom: 'env(safe-area-inset-bottom)',
       }}
@@ -228,18 +228,18 @@ export function Home() {
         <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-[#D4A76A]/60 group-hover:text-[#D4A76A] transition-colors" />
       </button>
 
-      {/* Main content - Centered with tighter spacing on mobile */}
-      <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 md:px-6 py-4 md:py-8">
+      {/* Main content - Optimized spacing for mobile */}
+      <div className="relative z-10 min-h-screen flex flex-col items-center justify-between px-4 md:px-6 py-safe">
         
-        {/* Logo and Title - More compact on mobile */}
+        {/* Logo and Title - Compact on mobile */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex items-center gap-3 md:gap-4 mb-4 md:mb-10 mt-12 md:mt-16"
+          className="flex items-center gap-3 md:gap-4 pt-4 pb-3 md:pt-8 md:pb-6"
         >
           {/* Logo */}
           <motion.div 
-            className="relative w-10 h-10 md:w-16 md:h-16 flex-shrink-0"
+            className="relative w-8 h-8 md:w-16 md:h-16 flex-shrink-0"
             animate={{ 
               rotateY: [0, 360],
             }}
@@ -259,7 +259,7 @@ export function Home() {
               }}
             >
               <div className="absolute inset-0 flex items-center justify-center">
-                <ChineseCharacter char="玄" className="text-base md:text-2xl text-[#D4A76A] font-bold" />
+                <ChineseCharacter char="玄" className="text-xs md:text-2xl text-[#D4A76A] font-bold" />
               </div>
             </div>
             {/* Logo glow */}
@@ -268,17 +268,17 @@ export function Home() {
 
           {/* Title */}
           <div className="flex flex-col">
-            <h1 className="text-lg md:text-3xl tracking-[0.3em] text-[#D4A76A]" style={{ fontWeight: 300 }}>
+            <h1 className="text-base md:text-3xl tracking-[0.3em] text-[#D4A76A]" style={{ fontWeight: 300 }}>
               MYSTIC ARTS
             </h1>
-            <p className="text-[10px] md:text-sm text-[#C19A6B]/70 tracking-[0.2em] -mt-1">
-              <ChineseCharacter char="問天知命" className="text-[10px] md:text-sm" />
+            <p className="text-[9px] md:text-sm text-[#C19A6B]/70 tracking-[0.2em] -mt-0.5">
+              <ChineseCharacter char="問天知命" className="text-[9px] md:text-sm" />
             </p>
           </div>
         </motion.div>
 
-        {/* Large centered card - Adjusted for mobile */}
-        <div className="relative w-full max-w-6xl flex-1 flex items-center justify-center min-h-0" style={{ perspective: '2000px' }}>
+        {/* Large centered card - Better mobile sizing */}
+        <div className="relative w-full max-w-6xl flex-1 flex items-center justify-center py-4 md:py-8" style={{ perspective: '2000px' }}>
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={activeIndex}
@@ -293,7 +293,7 @@ export function Home() {
                 scale: { duration: 0.3 },
                 rotateY: { duration: 0.5 },
               }}
-              className="w-full h-full max-h-[55vh] md:max-h-[55vh]"
+              className="w-full h-full max-h-[500px] md:max-h-[60vh]"
               drag="x"
               dragConstraints={{ left: -1000, right: 1000 }}
               dragElastic={0.5}
