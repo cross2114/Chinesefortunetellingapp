@@ -80,6 +80,7 @@ export function Home() {
   const { user } = useAuth();
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
   
   // Mouse position tracking
   const mouseX = useMotionValue(0);
@@ -89,6 +90,21 @@ export function Home() {
 
   // Drag tracking
   const dragX = useMotionValue(0);
+
+  // Update viewport height on resize (fixes iOS Safari address bar issue)
+  useEffect(() => {
+    const updateHeight = () => {
+      setViewportHeight(window.innerHeight);
+    };
+    
+    window.addEventListener('resize', updateHeight);
+    window.addEventListener('orientationchange', updateHeight);
+    
+    return () => {
+      window.removeEventListener('resize', updateHeight);
+      window.removeEventListener('orientationchange', updateHeight);
+    };
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -157,7 +173,14 @@ export function Home() {
   };
 
   return (
-    <div className="relative w-full h-screen bg-gradient-to-br from-[#1a1510] via-[#0f0a08] to-[#1a0f0a] overflow-hidden">
+    <div 
+      className="relative w-full bg-gradient-to-br from-[#1a1510] via-[#0f0a08] to-[#1a0f0a] overflow-hidden touch-none"
+      style={{ 
+        height: `${viewportHeight}px`,
+        paddingTop: 'env(safe-area-inset-top)',
+        paddingBottom: 'env(safe-area-inset-bottom)',
+      }}
+    >
       {/* Animated background patterns */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#B8543E]/10 rounded-full blur-3xl animate-pulse" />
@@ -173,16 +196,16 @@ export function Home() {
         }}
       />
 
-      {/* Floating Chinese characters in corners */}
+      {/* Floating Chinese characters in corners - hidden on mobile */}
       <motion.div
-        className="fixed top-8 left-8 text-6xl text-[#D4A76A]/10"
+        className="hidden md:block fixed top-8 left-8 text-6xl text-[#D4A76A]/10"
         animate={{ opacity: [0.1, 0.2, 0.1], y: [0, -10, 0] }}
         transition={{ duration: 4, repeat: Infinity }}
       >
         <ChineseCharacter char="陰" />
       </motion.div>
       <motion.div
-        className="fixed bottom-8 right-8 text-6xl text-[#D4A76A]/10"
+        className="hidden md:block fixed bottom-8 right-8 text-6xl text-[#D4A76A]/10"
         animate={{ opacity: [0.1, 0.2, 0.1], y: [0, 10, 0] }}
         transition={{ duration: 4, repeat: Infinity, delay: 2 }}
       >
@@ -192,31 +215,31 @@ export function Home() {
       {/* Navigation controls - Fixed position */}
       <button
         onClick={prevSlide}
-        className="fixed left-4 md:left-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center border border-[#D4A76A]/30 bg-black/40 backdrop-blur-sm hover:bg-[#D4A76A]/20 hover:border-[#D4A76A]/60 transition-all group"
+        className="fixed left-2 md:left-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center border border-[#D4A76A]/30 bg-black/40 backdrop-blur-sm hover:bg-[#D4A76A]/20 hover:border-[#D4A76A]/60 transition-all group"
         aria-label="Previous service"
       >
-        <ChevronLeft className="w-6 h-6 text-[#D4A76A]/60 group-hover:text-[#D4A76A] transition-colors" />
+        <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-[#D4A76A]/60 group-hover:text-[#D4A76A] transition-colors" />
       </button>
       <button
         onClick={nextSlide}
-        className="fixed right-4 md:right-8 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center border border-[#D4A76A]/30 bg-black/40 backdrop-blur-sm hover:bg-[#D4A76A]/20 hover:border-[#D4A76A]/60 transition-all group"
+        className="fixed right-2 md:right-8 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center border border-[#D4A76A]/30 bg-black/40 backdrop-blur-sm hover:bg-[#D4A76A]/20 hover:border-[#D4A76A]/60 transition-all group"
         aria-label="Next service"
       >
-        <ChevronRight className="w-6 h-6 text-[#D4A76A]/60 group-hover:text-[#D4A76A] transition-colors" />
+        <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-[#D4A76A]/60 group-hover:text-[#D4A76A] transition-colors" />
       </button>
 
-      {/* Main content - Centered */}
-      <div className="relative z-10 h-full flex flex-col items-center justify-center px-6 py-8">
+      {/* Main content - Centered with tighter spacing on mobile */}
+      <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 md:px-6 py-4 md:py-8">
         
-        {/* Logo and Title */}
+        {/* Logo and Title - More compact on mobile */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex items-center gap-4 mb-8 md:mb-10"
+          className="flex items-center gap-3 md:gap-4 mb-4 md:mb-10 mt-12 md:mt-16"
         >
           {/* Logo */}
           <motion.div 
-            className="relative w-12 h-12 md:w-16 md:h-16"
+            className="relative w-10 h-10 md:w-16 md:h-16 flex-shrink-0"
             animate={{ 
               rotateY: [0, 360],
             }}
@@ -236,7 +259,7 @@ export function Home() {
               }}
             >
               <div className="absolute inset-0 flex items-center justify-center">
-                <ChineseCharacter char="玄" className="text-lg md:text-2xl text-[#D4A76A] font-bold" />
+                <ChineseCharacter char="玄" className="text-base md:text-2xl text-[#D4A76A] font-bold" />
               </div>
             </div>
             {/* Logo glow */}
@@ -245,17 +268,17 @@ export function Home() {
 
           {/* Title */}
           <div className="flex flex-col">
-            <h1 className="text-xl md:text-3xl tracking-[0.3em] text-[#D4A76A]" style={{ fontWeight: 300 }}>
+            <h1 className="text-lg md:text-3xl tracking-[0.3em] text-[#D4A76A]" style={{ fontWeight: 300 }}>
               MYSTIC ARTS
             </h1>
-            <p className="text-xs md:text-sm text-[#C19A6B]/70 tracking-[0.2em] -mt-1">
-              <ChineseCharacter char="問天知命" className="text-xs md:text-sm" />
+            <p className="text-[10px] md:text-sm text-[#C19A6B]/70 tracking-[0.2em] -mt-1">
+              <ChineseCharacter char="問天知命" className="text-[10px] md:text-sm" />
             </p>
           </div>
         </motion.div>
 
-        {/* Large centered card */}
-        <div className="relative w-full max-w-6xl flex-1 flex items-center justify-center" style={{ perspective: '2000px' }}>
+        {/* Large centered card - Adjusted for mobile */}
+        <div className="relative w-full max-w-6xl flex-1 flex items-center justify-center min-h-0" style={{ perspective: '2000px' }}>
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={activeIndex}
@@ -270,7 +293,7 @@ export function Home() {
                 scale: { duration: 0.3 },
                 rotateY: { duration: 0.5 },
               }}
-              className="w-full h-full max-h-[65vh]"
+              className="w-full h-full max-h-[55vh] md:max-h-[55vh]"
               drag="x"
               dragConstraints={{ left: -1000, right: 1000 }}
               dragElastic={0.5}
@@ -297,7 +320,7 @@ export function Home() {
                 {[0, 90, 180, 270].map((angle) => (
                   <div
                     key={angle}
-                    className="absolute w-8 h-8 md:w-12 md:h-12 border-[#D4A76A]/20"
+                    className="absolute w-6 h-6 md:w-12 md:h-12 border-[#D4A76A]/20"
                     style={{
                       top: angle < 180 ? 0 : 'auto',
                       bottom: angle >= 180 ? 0 : 'auto',
@@ -330,8 +353,8 @@ export function Home() {
                 />
 
                 {/* Content */}
-                <div className="relative h-full flex flex-col items-center justify-center p-4 md:p-12 text-center">
-                  {/* 3D Icon with enhanced effects */}
+                <div className="relative h-full flex flex-col items-center justify-center p-3 md:p-12 text-center">
+                  {/* 3D Icon with enhanced effects - smaller on mobile */}
                   <motion.div
                     initial={{ scale: 0.5, opacity: 0, rotateY: -180 }}
                     animate={{ 
@@ -345,7 +368,7 @@ export function Home() {
                       stiffness: 200,
                       damping: 15
                     }}
-                    className="mb-4 md:mb-8 relative"
+                    className="mb-3 md:mb-8 relative"
                     style={{ 
                       transformStyle: 'preserve-3d',
                     }}
@@ -394,9 +417,9 @@ export function Home() {
                         }}
                       />
                       
-                      {/* Main Icon */}
+                      {/* Main Icon - responsive size */}
                       <Icon 
-                        className={`w-24 h-24 md:w-48 md:h-48 ${activeService.textColor} relative`}
+                        className={`w-20 h-20 md:w-48 md:h-48 ${activeService.textColor} relative`}
                         style={{
                           filter: `drop-shadow(0 4px 8px ${activeService.glowColor})`,
                           transform: 'translateZ(0)',
@@ -421,7 +444,7 @@ export function Home() {
                       />
                     </motion.div>
 
-                    {/* Floating particles around icon */}
+                    {/* Floating particles around icon - smaller on mobile */}
                     {[0, 1, 2, 3].map((i) => (
                       <motion.div
                         key={i}
@@ -432,8 +455,8 @@ export function Home() {
                           top: '50%',
                         }}
                         animate={{
-                          x: [0, Math.cos(i * Math.PI / 2) * 80, 0],
-                          y: [0, Math.sin(i * Math.PI / 2) * 80, 0],
+                          x: [0, Math.cos(i * Math.PI / 2) * 60, 0],
+                          y: [0, Math.sin(i * Math.PI / 2) * 60, 0],
                           opacity: [0, 1, 0],
                           scale: [0, 1.5, 0],
                         }}
@@ -451,7 +474,7 @@ export function Home() {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.3 }}
-                    className={`text-2xl md:text-5xl tracking-[0.3em] ${activeService.textColor} mb-1.5 md:mb-3 drop-shadow-md`}
+                    className={`text-xl md:text-5xl tracking-[0.3em] ${activeService.textColor} mb-2 md:mb-6 drop-shadow-md`}
                     style={{ fontWeight: 300 }}
                   >
                     {activeService.title}
@@ -461,7 +484,7 @@ export function Home() {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.4 }}
-                    className={`text-xs md:text-lg ${activeService.textColor} opacity-80 mb-1.5 md:mb-2`}
+                    className={`text-[11px] md:text-lg ${activeService.textColor} opacity-80 mb-2 md:mb-4`}
                   >
                     {activeService.subtitle}
                   </motion.p>
@@ -470,7 +493,7 @@ export function Home() {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.5 }}
-                    className={`text-xs md:text-base ${activeService.textColor} opacity-70 leading-relaxed mb-4 md:mb-8 max-w-lg px-2 md:px-0`}
+                    className={`text-[11px] md:text-base ${activeService.textColor} opacity-70 leading-relaxed mb-6 md:mb-12 max-w-lg px-2 md:px-0`}
                   >
                     {activeService.description}
                   </motion.p>
@@ -482,13 +505,13 @@ export function Home() {
                   >
                     <Link to={activeService.path}>
                       <Button 
-                        className={`bg-gradient-to-r ${activeService.bgGradient.replace(/\/\d+/g, '/80')} hover:opacity-90 border-2 ${activeService.borderColor} ${activeService.textColor} shadow-2xl group h-10 md:h-12 px-6 md:px-8`}
+                        className={`bg-gradient-to-r ${activeService.bgGradient.replace(/\/\d+/g, '/80')} hover:opacity-90 border-2 ${activeService.borderColor} ${activeService.textColor} shadow-2xl group h-9 md:h-12 px-5 md:px-8`}
                         style={{
                           boxShadow: `0 8px 30px ${activeService.glowColor}`,
                         }}
                       >
-                        <span className="text-xs md:text-sm tracking-[0.2em] font-medium">ENTER</span>
-                        <ArrowRight className="w-4 h-4 md:w-5 md:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                        <span className="text-[11px] md:text-sm tracking-[0.2em] font-medium">ENTER</span>
+                        <ArrowRight className="w-3.5 h-3.5 md:w-5 md:h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                       </Button>
                     </Link>
                   </motion.div>

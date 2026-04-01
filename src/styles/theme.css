@@ -133,11 +133,7 @@
     @apply bg-background text-foreground;
     background-color: #0f0a08 !important;
     color: #ffffff;
-    /* iOS Safe Area support */
-    padding-top: env(safe-area-inset-top);
-    padding-bottom: env(safe-area-inset-bottom);
-    padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
+    /* iOS Safe Area support - removed from body, will be applied per-page */
   }
 
   /**

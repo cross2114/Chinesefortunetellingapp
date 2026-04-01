@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New App Icon Preview</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      background: linear-gradient(135deg, #1a1410 0%, #0f0a08 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    
+    h1 {
+      color: #D4A574;
+      margin-bottom: 20px;
+      font-size: 32px;
+      text-align: center;
+    }
+    
+    p {
+      color: #B8543E;
+      margin-bottom: 40px;
+      text-align: center;
+      max-width: 600px;
+    }
+    
+    .icon-container {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+    
+    .icon-wrapper {
+      background: white;
+      border-radius: 60px;
+      padding: 20px;
+      display: inline-block;
+    }
+    
+    img {
+      display: block;
+      border-radius: 45px;
+    }
+    
+    .sizes {
+      display: flex;
+      gap: 30px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .size-item {
+      text-align: center;
+    }
+    
+    .size-label {
+      color: #D4A574;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌙 New App Icon - Modern Dunhuang Style</h1>
+  <p>Crescent Moon + Mystical Star | Clean & Minimal Design | No Chinese Characters</p>
+  
+  <div class="icon-container">
+    <div class="icon-wrapper">
+      <img src="/icons/app-icon-1024.svg" width="512" height="512" alt="App Icon Large">
+    </div>
+  </div>
+  
+  <div class="sizes">
+    <div class="size-item">
+      <div style="background: white; border-radius: 30px; padding: 10px; display: inline-block;">
+        <img src="/icons/app-icon-1024.svg" width="180" height="180" alt="App Icon" style="border-radius: 22px;">
+      </div>
+      <div class="size-label">180x180</div>
+    </div>
+    
+    <div class="size-item">
+      <div style="background: white; border-radius: 20px; padding: 8px; display: inline-block;">
+        <img src="/icons/app-icon-1024.svg" width="120" height="120" alt="App Icon" style="border-radius: 15px;">
+      </div>
+      <div class="size-label">120x120</div>
+    </div>
+    
+    <div class="size-item">
+      <div style="background: white; border-radius: 15px; padding: 6px; display: inline-block;">
+        <img src="/icons/app-icon-1024.svg" width="80" height="80" alt="App Icon" style="border-radius: 10px;">
+      </div>
+      <div class="size-label">80x80</div>
+    </div>
+  </div>
+  
+  <script>
+    // Force reload without cache
+    const timestamp = new Date().getTime();
+    document.querySelectorAll('img').forEach(img => {
+      const src = img.src;
+      img.src = src + '?t=' + timestamp;
+    });
+  </script>
+</body>
+</html>

@@ -103,11 +103,11 @@ export function BaZi() {
             className="text-center mb-16"
           >
             <motion.div 
-              className="inline-block gradient-border p-4 mb-8"
+              className="inline-block border border-border p-3 mb-6"
               whileHover={{ scale: 1.05 }}
               transition={{ type: 'spring', stiffness: 300 }}
             >
-              <span className="text-4xl">八字</span>
+              <span className="text-2xl">八字</span>
             </motion.div>
             
             <h2 className="text-4xl md:text-5xl mb-6 tracking-wider text-gradient" style={{ fontWeight: 300 }}>
@@ -186,7 +186,7 @@ export function BaZi() {
                           transition={{ delay: 0.4 + index * 0.1 }}
                           className="space-y-3"
                         >
-                          <Label className="text-base tracking-wide">{field.label}</Label>
+                          <Label className="text-base tracking-wide text-[#2c2c2c]">{field.label}</Label>
                           <Input
                             type={field.type}
                             placeholder={field.placeholder}
@@ -196,7 +196,7 @@ export function BaZi() {
                             disabled={!canAccess}
                             min={field.min}
                             max={field.max}
-                            className="glass-effect border-accent/20 focus:border-accent transition-all h-12 text-base"
+                            className="border-border bg-input-background focus:border-accent transition-all h-12 text-base text-foreground placeholder:text-muted-foreground"
                           />
                         </motion.div>
                       ))}
@@ -206,7 +206,7 @@ export function BaZi() {
                       <Button 
                         type="submit" 
                         disabled={!canAccess}
-                        className="w-full bg-accent hover:bg-accent/90 text-accent-foreground py-6 text-lg tracking-wide shadow-3d hover:shadow-3d-hover transition-all duration-300 disabled:opacity-50"
+                        className="w-full bg-primary hover:bg-accent transition-colors py-6 text-lg tracking-wide disabled:opacity-50"
                       >
                         Calculate Destiny
                       </Button>
@@ -240,7 +240,7 @@ export function BaZi() {
                     <span className="text-6xl">{animalEmojis[result.animal]}</span>
                   </motion.div>
                   
-                  <h3 className="text-4xl mb-3 tracking-wider">
+                  <h3 className="text-4xl mb-3 tracking-wider text-[#2c2c2c]">
                     {result.element} {result.animal}
                   </h3>
                   
@@ -280,7 +280,7 @@ export function BaZi() {
                             {pillar.name}
                           </div>
                           <div className="space-y-3">
-                            <div className="text-base font-medium">{pillar.heavenly}</div>
+                            <div className="text-base font-medium text-[#2c2c2c]">{pillar.heavenly}</div>
                             <div className="flex items-center justify-center">
                               <motion.div 
                                 className="h-px w-10 bg-gradient-to-r from-transparent via-accent to-transparent"
@@ -288,7 +288,7 @@ export function BaZi() {
                                 transition={{ duration: 2, repeat: Infinity }}
                               />
                             </div>
-                            <div className="text-base">{pillar.earthly}</div>
+                            <div className="text-base text-[#2c2c2c]">{pillar.earthly}</div>
                           </div>
                         </div>
                       </Card3D>

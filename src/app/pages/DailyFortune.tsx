@@ -4,6 +4,7 @@ import { Card } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { motion } from 'motion/react';
 import { Sun, Moon, Star, Heart, Briefcase, Coins, Users } from 'lucide-react';
+import { FloatingOrbs, DecorativeSymbol } from '../components/FloatingElements';
 
 const fortunes = {
   overall: [
@@ -84,7 +85,15 @@ export function DailyFortune() {
 
   return (
     <Layout showBackButton title="Daily Fortune">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-3xl mx-auto relative">
+        {/* Floating decorative elements */}
+        <div className="absolute -top-10 -left-10 pointer-events-none">
+          <DecorativeSymbol symbol="運" size="md" animation="float" />
+        </div>
+        <div className="absolute top-20 -right-10 pointer-events-none">
+          <DecorativeSymbol symbol="勢" size="md" animation="rotate" />
+        </div>
+
         {/* Introduction */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -157,17 +166,17 @@ export function DailyFortune() {
             <div className="grid grid-cols-3 gap-4">
               <Card className="p-6 text-center border-border">
                 <p className="text-xs text-muted-foreground mb-2 tracking-wider">LUCKY NUMBER</p>
-                <p className="text-3xl mb-1">{fortune.luckyNumber}</p>
+                <p className="text-3xl mb-1 text-[#2c2c2c]">{fortune.luckyNumber}</p>
               </Card>
               
               <Card className="p-6 text-center border-border">
                 <p className="text-xs text-muted-foreground mb-2 tracking-wider">ELEMENT</p>
-                <p className="text-xl mb-1" style={{ fontWeight: 300 }}>{fortune.element}</p>
+                <p className="text-xl mb-1 text-[#2c2c2c]" style={{ fontWeight: 300 }}>{fortune.element}</p>
               </Card>
               
               <Card className="p-6 text-center border-border">
                 <p className="text-xs text-muted-foreground mb-2 tracking-wider">LUCKY COLOR</p>
-                <p className="text-xl mb-1" style={{ fontWeight: 300 }}>{fortune.color}</p>
+                <p className="text-xl mb-1 text-[#2c2c2c]" style={{ fontWeight: 300 }}>{fortune.color}</p>
               </Card>
             </div>
 
@@ -191,7 +200,7 @@ export function DailyFortune() {
                           </div>
                           
                           <div className="flex-1">
-                            <h4 className="mb-3 tracking-wide">{aspect.name}</h4>
+                            <h4 className="mb-3 tracking-wide text-[#2c2c2c]">{aspect.name}</h4>
                             <p className="text-sm text-muted-foreground leading-relaxed" style={{ fontWeight: 300 }}>
                               {aspect.value}
                             </p>
@@ -205,7 +214,7 @@ export function DailyFortune() {
             </div>
 
             {/* Wisdom Quote */}
-            <Card className="p-8 text-center border-border bg-muted/30">
+            <Card className="p-8 text-center border-border">
               <div className="flex items-center justify-center gap-2 mb-4">
                 <div className="h-px w-12 bg-border" />
                 <span className="text-xs tracking-[0.3em]">古語</span>

@@ -4,6 +4,7 @@ import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Textarea } from '../components/ui/textarea';
 import { motion } from 'motion/react';
+import { FloatingOrbs, DecorativeSymbol } from '../components/FloatingElements';
 
 const hexagrams = [
   { number: 1, name: 'The Creative', chinese: '乾', meaning: 'Heaven', guidance: 'Great success through perseverance. The Creative power is at work.' },
@@ -45,7 +46,15 @@ export function IChing() {
 
   return (
     <Layout showBackButton title="I Ching Oracle">
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-2xl mx-auto relative">
+        {/* Floating decorative elements */}
+        <div className="absolute -top-10 -left-10 pointer-events-none">
+          <DecorativeSymbol symbol="易" size="md" animation="float" />
+        </div>
+        <div className="absolute top-20 -right-10 pointer-events-none">
+          <DecorativeSymbol symbol="經" size="md" animation="rotate" />
+        </div>
+
         {/* Introduction */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -73,7 +82,7 @@ export function IChing() {
             <Card className="p-8 border-border">
               <div className="space-y-6">
                 <div>
-                  <label className="block text-sm mb-3 tracking-wider">
+                  <label className="block text-sm mb-3 tracking-wider text-[#2c2c2c]">
                     ASK YOUR QUESTION
                   </label>
                   <Textarea
@@ -81,7 +90,7 @@ export function IChing() {
                     value={question}
                     onChange={(e) => setQuestion(e.target.value)}
                     rows={4}
-                    className="border-border bg-input-background resize-none"
+                    className="border-border bg-input-background resize-none text-foreground placeholder:text-muted-foreground"
                   />
                 </div>
 
@@ -126,10 +135,10 @@ export function IChing() {
                 <div className="inline-block border border-border p-4 mb-4">
                   <span className="text-5xl">{result.hexagram.chinese}</span>
                 </div>
-                <h3 className="text-2xl mb-2 tracking-wider">
+                <h3 className="text-2xl mb-2 tracking-wider text-[#2c2c2c]">
                   Hexagram {result.hexagram.number}
                 </h3>
-                <p className="text-xl mb-1" style={{ fontWeight: 300 }}>
+                <p className="text-xl mb-1 text-[#2c2c2c]" style={{ fontWeight: 300 }}>
                   {result.hexagram.name}
                 </p>
                 <p className="text-sm text-muted-foreground tracking-wider">
@@ -162,13 +171,13 @@ export function IChing() {
 
             {/* Judgment */}
             <Card className="p-8 border-border">
-              <h3 className="text-xl mb-4 tracking-wider">The Judgment</h3>
+              <h3 className="text-xl mb-4 tracking-wider text-[#2c2c2c]">The Judgment</h3>
               <p className="text-muted-foreground leading-relaxed mb-6" style={{ fontWeight: 300 }}>
                 {result.hexagram.guidance}
               </p>
               
               <div className="border-t border-border pt-6">
-                <h4 className="text-sm mb-3 tracking-wider">INTERPRETATION</h4>
+                <h4 className="text-sm mb-3 tracking-wider text-[#2c2c2c]">INTERPRETATION</h4>
                 <p className="text-muted-foreground leading-relaxed" style={{ fontWeight: 300, fontStyle: 'italic' }}>
                   {result.interpretation}
                 </p>

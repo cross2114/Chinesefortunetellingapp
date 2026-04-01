@@ -82,7 +82,7 @@ export function Signup() {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="name">Full Name</Label>
+                <Label htmlFor="name" className="text-[#2c2c2c]">Name</Label>
                 <Input
                   id="name"
                   type="text"
@@ -90,12 +90,12 @@ export function Signup() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
-                  className="border-border bg-input-background backdrop-blur-sm"
+                  className="border-border bg-input-background backdrop-blur-sm text-foreground placeholder:text-muted-foreground"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email" className="text-[#2c2c2c]">Email</Label>
                 <Input
                   id="email"
                   type="email"
@@ -103,12 +103,12 @@ export function Signup() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="border-border bg-input-background backdrop-blur-sm"
+                  className="border-border bg-input-background backdrop-blur-sm text-foreground placeholder:text-muted-foreground"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="text-[#2c2c2c]">Password</Label>
                 <Input
                   id="password"
                   type="password"
@@ -117,7 +117,7 @@ export function Signup() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   minLength={6}
-                  className="border-border bg-input-background backdrop-blur-sm"
+                  className="border-border bg-input-background backdrop-blur-sm text-foreground placeholder:text-muted-foreground"
                 />
               </div>
 

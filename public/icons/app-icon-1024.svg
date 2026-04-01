@@ -1,178 +1,102 @@
 <svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-  <!-- Definitions -->
+  <!-- Modern Dunhuang Style App Icon - Clean & Minimal -->
   <defs>
-    <!-- Background gradient with Dunhuang colors -->
-    <radialGradient id="bgGradient" cx="50%" cy="50%" r="60%">
-      <stop offset="0%" style="stop-color:#1a1410;stop-opacity:1" />
+    <!-- Deep Dunhuang gradient background -->
+    <radialGradient id="bgGradient" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" style="stop-color:#2a1f1a;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#0f0a08;stop-opacity:1" />
     </radialGradient>
     
-    <!-- Golden glow for mystical effect -->
-    <radialGradient id="goldenGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" style="stop-color:#D4A574;stop-opacity:0.4" />
-      <stop offset="50%" style="stop-color:#B8543E;stop-opacity:0.2" />
-      <stop offset="100%" style="stop-color:#0f0a08;stop-opacity:0" />
-    </radialGradient>
-    
-    <!-- Ochre red gradient -->
-    <linearGradient id="ochreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#D4A574;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#B8543E;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#A64A32;stop-opacity:1" />
+    <!-- Ochre to Gold gradient (Dunhuang colors) -->
+    <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8B86D;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#D4A574;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B8543E;stop-opacity:1" />
     </linearGradient>
     
-    <!-- Stone blue gradient -->
-    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#5A7FA5;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#4A6FA5;stop-opacity:1" />
+    <!-- Stone blue accent -->
+    <linearGradient id="blueAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6A8FAF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5A7FA5;stop-opacity:1" />
     </linearGradient>
     
-    <!-- Inner shadow for depth -->
-    <filter id="innerShadow">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
-      <feOffset dx="0" dy="2" result="offsetblur"/>
-      <feFlood flood-color="#000000" flood-opacity="0.5"/>
-      <feComposite in2="offsetblur" operator="in"/>
-      <feMerge>
-        <feMergeNode/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-    
-    <!-- Soft glow filter -->
+    <!-- Soft glow effect -->
     <filter id="glow">
-      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
       <feMerge>
         <feMergeNode in="coloredBlur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
+    
+    <!-- Subtle inner glow -->
+    <radialGradient id="innerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#D4A574;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#0f0a08;stop-opacity:0" />
+    </radialGradient>
   </defs>
   
-  <!-- Background -->
+  <!-- Background with rounded corners -->
   <rect width="1024" height="1024" fill="url(#bgGradient)" rx="180"/>
   
-  <!-- Mystical glow -->
-  <circle cx="512" cy="512" r="400" fill="url(#goldenGlow)"/>
+  <!-- Subtle inner glow -->
+  <circle cx="512" cy="512" r="450" fill="url(#innerGlow)"/>
   
-  <!-- Outer decorative circle with Dunhuang pattern -->
-  <circle cx="512" cy="512" r="420" fill="none" stroke="url(#ochreGradient)" stroke-width="2" opacity="0.3"/>
-  <circle cx="512" cy="512" r="440" fill="none" stroke="url(#ochreGradient)" stroke-width="1" opacity="0.2"/>
-  
-  <!-- Eight trigrams positions (Bagua octagon) -->
-  <g opacity="0.4" stroke="url(#blueGradient)" stroke-width="2" fill="none">
-    <!-- Octagon representing Eight Trigrams -->
-    <path d="M 512 132 L 689 236 L 789 413 L 789 611 L 689 788 L 512 892 L 335 788 L 235 611 L 235 413 L 335 236 Z"/>
-    
-    <!-- Inner octagon -->
-    <path d="M 512 182 L 659 266 L 739 443 L 739 581 L 659 758 L 512 842 L 365 758 L 285 581 L 285 443 L 365 266 Z" opacity="0.6"/>
-  </g>
-  
-  <!-- Decorative corner elements (Dunhuang cloud patterns) -->
-  <g fill="url(#ochreGradient)" opacity="0.2">
-    <!-- Top -->
-    <circle cx="512" cy="132" r="8"/>
-    <!-- Top-right -->
-    <circle cx="689" cy="236" r="6"/>
-    <!-- Right -->
-    <circle cx="789" cy="413" r="8"/>
-    <!-- Bottom-right -->
-    <circle cx="789" cy="611" r="6"/>
-    <!-- Bottom -->
-    <circle cx="512" cy="892" r="8"/>
-    <!-- Bottom-left -->
-    <circle cx="335" cy="788" r="6"/>
-    <!-- Left -->
-    <circle cx="235" cy="611" r="8"/>
-    <!-- Top-left -->
-    <circle cx="235" cy="413" r="6"/>
-  </g>
-  
-  <!-- Central circular frame -->
-  <circle cx="512" cy="512" r="320" fill="none" stroke="url(#ochreGradient)" stroke-width="3" opacity="0.5"/>
-  <circle cx="512" cy="512" r="315" fill="rgba(212, 167, 116, 0.05)"/>
-  
-  <!-- Yin-Yang inspired design with mystical elements -->
+  <!-- Main symbol: Crescent Moon with Star (mystical fortune telling symbol) -->
   <g filter="url(#glow)">
-    <!-- Outer ring -->
-    <circle cx="512" cy="512" r="240" fill="none" stroke="url(#ochreGradient)" stroke-width="4"/>
+    <!-- Crescent Moon -->
+    <path d="M 512 180 
+             A 280 280 0 0 1 512 844
+             A 240 240 0 0 0 512 180 Z" 
+          fill="url(#mainGradient)" 
+          opacity="0.95"/>
     
-    <!-- Inner mystical symbol - Stylized Taiji/Lotus fusion -->
-    <g opacity="0.9">
-      <!-- Left half (Yin) -->
-      <path d="M 512 272 A 240 240 0 0 1 512 752 A 120 120 0 0 0 512 512 A 120 120 0 0 1 512 272 Z" 
-            fill="url(#ochreGradient)" opacity="0.3"/>
-      
-      <!-- Right half (Yang) -->
-      <path d="M 512 272 A 240 240 0 0 0 512 752 A 120 120 0 0 1 512 512 A 120 120 0 0 0 512 272 Z" 
-            fill="url(#blueGradient)" opacity="0.3"/>
-      
-      <!-- Center dots -->
-      <circle cx="512" cy="392" r="30" fill="url(#blueGradient)" opacity="0.6"/>
-      <circle cx="512" cy="632" r="30" fill="url(#ochreGradient)" opacity="0.6"/>
-      <circle cx="512" cy="392" r="12" fill="#0f0a08" opacity="0.8"/>
-      <circle cx="512" cy="632" r="12" fill="#0f0a08" opacity="0.8"/>
+    <!-- Inner crescent detail -->
+    <path d="M 532 220 
+             A 240 240 0 0 1 532 804
+             A 210 210 0 0 0 532 220 Z" 
+          fill="none" 
+          stroke="url(#blueAccent)" 
+          stroke-width="2" 
+          opacity="0.4"/>
+    
+    <!-- Mystical star inside crescent -->
+    <g transform="translate(640, 512)">
+      <!-- 8-pointed star (Bagua reference) -->
+      <path d="M 0 -70 L 15 -20 L 65 -15 L 25 15 L 35 65 L 0 35 L -35 65 L -25 15 L -65 -15 L -15 -20 Z" 
+            fill="url(#mainGradient)" 
+            opacity="0.9"/>
+      <circle cx="0" cy="0" r="16" fill="url(#blueAccent)" opacity="0.7"/>
+      <circle cx="0" cy="0" r="6" fill="#0f0a08" opacity="0.9"/>
     </g>
   </g>
   
-  <!-- Central Chinese character 玄 (Mysterious/Mystical) -->
-  <text 
-    x="512" 
-    y="565" 
-    font-family="'Noto Serif SC', 'STSong', 'SimSun', serif" 
-    font-size="240" 
-    font-weight="600"
-    fill="url(#ochreGradient)" 
-    text-anchor="middle" 
-    dominant-baseline="middle"
-    opacity="0.85"
-    filter="url(#glow)"
-  >玄</text>
-  
-  <!-- Decorative particles around the character -->
-  <g fill="url(#ochreGradient)" opacity="0.3">
-    <circle cx="380" cy="420" r="3"/>
-    <circle cx="420" cy="480" r="2"/>
-    <circle cx="360" cy="540" r="3"/>
-    <circle cx="400" cy="600" r="2"/>
-    
-    <circle cx="644" cy="420" r="3"/>
-    <circle cx="604" cy="480" r="2"/>
-    <circle cx="664" cy="540" r="3"/>
-    <circle cx="624" cy="600" r="2"/>
-    
-    <circle cx="480" cy="360" r="2"/>
-    <circle cx="544" cy="360" r="2"/>
-    <circle cx="480" cy="664" r="2"/>
-    <circle cx="544" cy="664" r="2"/>
+  <!-- Subtle decorative circles (minimal Dunhuang pattern) -->
+  <g opacity="0.15" stroke="url(#mainGradient)" stroke-width="1.5" fill="none">
+    <circle cx="512" cy="512" r="420"/>
+    <circle cx="512" cy="512" r="440"/>
   </g>
   
-  <!-- Subtle corner decorations (Dunhuang style) -->
-  <g stroke="url(#ochreGradient)" stroke-width="2" fill="none" opacity="0.15">
-    <!-- Top corners -->
-    <path d="M 200 200 Q 150 150 100 200" stroke-linecap="round"/>
-    <path d="M 824 200 Q 874 150 924 200" stroke-linecap="round"/>
-    
-    <!-- Bottom corners -->
-    <path d="M 200 824 Q 150 874 100 824" stroke-linecap="round"/>
-    <path d="M 824 824 Q 874 874 924 824" stroke-linecap="round"/>
+  <!-- Four corner accent dots (compass points) -->
+  <g fill="url(#blueAccent)" opacity="0.3">
+    <circle cx="512" cy="140" r="4"/>
+    <circle cx="884" cy="512" r="4"/>
+    <circle cx="512" cy="884" r="4"/>
+    <circle cx="140" cy="512" r="4"/>
   </g>
   
-  <!-- Tiny stars for mystical atmosphere -->
-  <g fill="#D4A574" opacity="0.4">
-    <circle cx="256" cy="256" r="2"/>
-    <circle cx="768" cy="256" r="2"/>
-    <circle cx="256" cy="768" r="2"/>
-    <circle cx="768" cy="768" r="2"/>
-    
-    <circle cx="180" cy="512" r="1.5"/>
-    <circle cx="844" cy="512" r="1.5"/>
-    <circle cx="512" cy="180" r="1.5"/>
-    <circle cx="512" cy="844" r="1.5"/>
+  <!-- Tiny mystical particles -->
+  <g fill="url(#mainGradient)" opacity="0.25">
+    <circle cx="320" cy="280" r="2.5"/>
+    <circle cx="704" cy="280" r="2"/>
+    <circle cx="280" cy="512" r="2.5"/>
+    <circle cx="280" cy="704" r="2"/>
+    <circle cx="704" cy="744" r="2.5"/>
   </g>
   
-  <!-- Center glow point -->
-  <circle cx="512" cy="512" r="6" fill="url(#ochreGradient)" opacity="0.8">
-    <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
+  <!-- Central glow point with pulse animation -->
+  <circle cx="640" cy="512" r="5" fill="url(#mainGradient)" opacity="0.9">
+    <animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite"/>
+    <animate attributeName="r" values="4;6;4" dur="2.5s" repeatCount="indefinite"/>
   </circle>
 </svg>

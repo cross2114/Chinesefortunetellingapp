@@ -16,7 +16,7 @@ export function Layout({ children, showBackButton = false, title }: LayoutProps)
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#0f0a08', color: '#ffffff' }}>
       {/* Header */}
-      <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-10">
+      <header className="border-b border-[#D4A76A]/20 sticky top-0 z-10" style={{ backgroundColor: 'rgba(26, 21, 16, 0.8)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}>
         <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
           {showBackButton ? (
             <Link 

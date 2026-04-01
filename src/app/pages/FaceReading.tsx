@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Layout } from '../components/Layout';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { motion } from 'motion/react';
-import { Upload, Camera } from 'lucide-react';
+import { Upload, Camera, X } from 'lucide-react';
+import { FloatingOrbs, DecorativeSymbol } from '../components/FloatingElements';
 
 const faceFeatures = [
   {
@@ -56,6 +57,31 @@ const personalityTraits = [
 export function FaceReading() {
   const [analyzing, setAnalyzing] = useState(false);
   const [result, setResult] = useState<any>(null);
+  const [uploadedImage, setUploadedImage] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setUploadedImage(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleCameraCapture = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setUploadedImage(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleAnalyze = () => {
     setAnalyzing(true);
@@ -77,11 +103,28 @@ export function FaceReading() {
 
   const handleReset = () => {
     setResult(null);
+    setUploadedImage(null);
+    if (fileInputRef.current) fileInputRef.current.value = '';
+    if (cameraInputRef.current) cameraInputRef.current.value = '';
+  };
+
+  const removeImage = () => {
+    setUploadedImage(null);
+    if (fileInputRef.current) fileInputRef.current.value = '';
+    if (cameraInputRef.current) cameraInputRef.current.value = '';
   };
 
   return (
     <Layout showBackButton title="Face Reading">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-3xl mx-auto relative">
+        {/* Floating decorative elements */}
+        <div className="absolute -top-10 -left-10 pointer-events-none">
+          <DecorativeSymbol symbol="面" size="md" animation="float" />
+        </div>
+        <div className="absolute top-20 -right-10 pointer-events-none">
+          <DecorativeSymbol symbol="相" size="md" animation="rotate" />
+        </div>
+
         {/* Introduction */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -108,27 +151,87 @@ export function FaceReading() {
           >
             <Card className="p-12 text-center border-border border-dashed">
               <div className="max-w-md mx-auto">
-                <div className="mb-6 flex justify-center gap-4">
-                  <div className="p-4 border border-border">
-                    <Camera className="w-8 h-8 text-muted-foreground" />
+                {/* Image preview */}
+                {uploadedImage ? (
+                  <div className="mb-6 relative">
+                    <img 
+                      src={uploadedImage} 
+                      alt="Uploaded face" 
+                      className="w-full max-w-sm mx-auto rounded border border-border"
+                    />
+                    <button
+                      onClick={removeImage}
+                      className="absolute top-2 right-2 p-2 bg-background/80 backdrop-blur-sm border border-border hover:bg-accent/10 transition-colors"
+                      aria-label="Remove image"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
                   </div>
-                  <div className="p-4 border border-border">
-                    <Upload className="w-8 h-8 text-muted-foreground" />
+                ) : (
+                  <div className="mb-6 flex justify-center gap-4">
+                    <div className="p-4 border border-border">
+                      <Camera className="w-8 h-8 text-muted-foreground" />
+                    </div>
+                    <div className="p-4 border border-border">
+                      <Upload className="w-8 h-8 text-muted-foreground" />
+                    </div>
                   </div>
-                </div>
+                )}
                 
-                <h3 className="text-xl mb-3 tracking-wider">Upload Your Photo</h3>
+                <h3 className="text-xl mb-3 tracking-wider text-[#2c2c2c]">
+                  {uploadedImage ? 'Photo Ready' : 'Upload Your Photo'}
+                </h3>
                 <p className="text-sm text-muted-foreground mb-6 leading-relaxed" style={{ fontWeight: 300 }}>
-                  For demonstration purposes, we'll provide a general reading based on classical face reading principles
+                  {uploadedImage 
+                    ? 'Click "Analyze Face" to begin the reading' 
+                    : 'Take a photo or upload from your device'}
                 </p>
                 
-                <Button
-                  onClick={handleAnalyze}
-                  disabled={analyzing}
-                  className="bg-primary hover:bg-accent transition-colors disabled:opacity-50"
-                >
-                  {analyzing ? 'Analyzing Features...' : 'Begin Analysis'}
-                </Button>
+                {/* Hidden file inputs */}
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileUpload}
+                  className="hidden"
+                />
+                <input
+                  ref={cameraInputRef}
+                  type="file"
+                  accept="image/*"
+                  capture="user"
+                  onChange={handleCameraCapture}
+                  className="hidden"
+                />
+                
+                {uploadedImage ? (
+                  <Button
+                    onClick={handleAnalyze}
+                    disabled={analyzing}
+                    className="w-full bg-primary hover:bg-accent transition-colors disabled:opacity-50"
+                  >
+                    {analyzing ? 'Analyzing Features...' : 'Analyze Face'}
+                  </Button>
+                ) : (
+                  <div className="flex gap-3">
+                    <Button
+                      onClick={() => cameraInputRef.current?.click()}
+                      variant="outline"
+                      className="flex-1 border-border hover:bg-accent/5"
+                    >
+                      <Camera className="w-4 h-4 mr-2" />
+                      Take Photo
+                    </Button>
+                    <Button
+                      onClick={() => fileInputRef.current?.click()}
+                      variant="outline"
+                      className="flex-1 border-border hover:bg-accent/5"
+                    >
+                      <Upload className="w-4 h-4 mr-2" />
+                      Upload
+                    </Button>
+                  </div>
+                )}
               </div>
             </Card>
 
@@ -152,8 +255,8 @@ export function FaceReading() {
             )}
 
             {/* Educational Info */}
-            <Card className="p-8 border-border bg-muted/30">
-              <h3 className="text-xl mb-6 tracking-wider">The Five Features</h3>
+            <Card className="p-8 border-border">
+              <h3 className="text-xl mb-6 tracking-wider text-[#2c2c2c]">The Five Features</h3>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                 {faceFeatures.slice(0, 6).map((feature, index) => (
                   <motion.div
@@ -163,7 +266,7 @@ export function FaceReading() {
                     transition={{ delay: 0.3 + index * 0.1 }}
                     className="text-center"
                   >
-                    <div className="text-sm mb-2 tracking-wide">{feature.name}</div>
+                    <div className="text-sm mb-2 tracking-wide text-[#2c2c2c]">{feature.name}</div>
                     <div className="text-xs text-muted-foreground mb-2">{feature.chinese}</div>
                     <div className="h-px w-12 bg-border mx-auto" />
                   </motion.div>
@@ -182,7 +285,7 @@ export function FaceReading() {
               <div className="inline-block border border-border p-4 mb-6">
                 <span className="text-4xl">相</span>
               </div>
-              <h3 className="text-2xl mb-4 tracking-wider">Overall Assessment</h3>
+              <h3 className="text-2xl mb-4 tracking-wider text-[#2c2c2c]">Overall Assessment</h3>
               <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto" style={{ fontWeight: 300, fontStyle: 'italic' }}>
                 {result.overall}
               </p>
@@ -190,7 +293,7 @@ export function FaceReading() {
 
             {/* Personality Traits */}
             <Card className="p-8 border-border">
-              <h3 className="text-xl mb-6 tracking-wider">Character Traits</h3>
+              <h3 className="text-xl mb-6 tracking-wider text-[#2c2c2c]">Character Traits</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {result.traits.map((trait: string, index: number) => (
                   <motion.div
@@ -225,7 +328,7 @@ export function FaceReading() {
                         </div>
                         
                         <div className="flex-1">
-                          <h4 className="mb-3 tracking-wide">{feature.name}</h4>
+                          <h4 className="mb-3 tracking-wide text-[#2c2c2c]">{feature.name}</h4>
                           <div className="flex flex-wrap gap-2 mb-3">
                             {feature.traits.map((trait: string) => (
                               <span

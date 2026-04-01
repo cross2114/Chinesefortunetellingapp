@@ -3,6 +3,7 @@ import { Layout } from '../components/Layout';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { motion } from 'motion/react';
+import { FloatingOrbs, DecorativeSymbol } from '../components/FloatingElements';
 
 const tarotCards = [
   { name: 'The Fool', number: 0, meaning: 'New beginnings, innocence, spontaneity', guidance: 'Embrace the unknown with an open heart. A journey is beginning.' },
@@ -62,7 +63,15 @@ export function Tarot() {
 
   return (
     <Layout showBackButton title="Tarot Reading">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-3xl mx-auto relative">
+        {/* Floating decorative elements */}
+        <div className="absolute -top-10 -left-10 pointer-events-none">
+          <DecorativeSymbol symbol="塔" size="md" animation="float" />
+        </div>
+        <div className="absolute top-20 -right-10 pointer-events-none">
+          <DecorativeSymbol symbol="羅" size="md" animation="rotate" />
+        </div>
+
         {/* Introduction */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -106,7 +115,7 @@ export function Tarot() {
                           : 'border-border hover:border-accent/30 bg-card'
                       }`}
                     >
-                      <h4 className="mb-2 tracking-wide">{spread.name}</h4>
+                      <h4 className="mb-2 tracking-wide text-[#2c2c2c]">{spread.name}</h4>
                       <p className="text-sm text-muted-foreground mb-3" style={{ fontWeight: 300 }}>
                         {spread.description}
                       </p>
@@ -177,7 +186,7 @@ export function Tarot() {
                         </motion.div>
                       </div>
                       
-                      <h4 className="mb-2 tracking-wide">
+                      <h4 className="mb-2 tracking-wide text-[#2c2c2c]">
                         {card.name}
                         {card.reversed && <span className="text-xs text-muted-foreground ml-2">(Reversed)</span>}
                       </h4>
