@@ -1,127 +1,189 @@
 <svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-  <!-- Dunhuang Fortune App Icon - Luxury Mystical Design -->
+  <!-- Dunhuang Fortune App Icon - Radiant Mystical Design -->
   <defs>
-    <!-- Deep mystical black background gradient -->
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#1a0f0a;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#0a0503;stop-opacity:1" />
-    </linearGradient>
+    <!-- Deep mystical black background -->
+    <radialGradient id="bgGrad" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#1a1410;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
+    </radialGradient>
     
-    <!-- Dunhuang Ochre Red (赭石红) -->
+    <!-- Vibrant Ochre Red with shine -->
     <linearGradient id="ochreRed" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#c8754e;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#a85a3b;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#e8956f;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#c8754e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d87a4e;stop-opacity:1" />
     </linearGradient>
     
-    <!-- Stone Blue (石青) with gold shimmer -->
+    <!-- Luminous Stone Blue -->
     <linearGradient id="stoneBlue" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#4a6fa5;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#3d5a7a;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#2d4a6a;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#6a8fc5;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#4a6fa5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5a7fb5;stop-opacity:1" />
     </linearGradient>
     
-    <!-- Champagne Gold (香槟金) -->
-    <linearGradient id="champagneGold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#f4e8d0;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#d4af7a;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#b8935a;stop-opacity:1" />
-    </linearGradient>
+    <!-- Brilliant Gold -->
+    <radialGradient id="brilliantGold" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#fff9e8;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#f4d58d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d4af6a;stop-opacity:1" />
+    </radialGradient>
     
-    <!-- Earth Yellow (土黄) -->
-    <linearGradient id="earthYellow" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#e8c547;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#d4a832;stop-opacity:1" />
-    </linearGradient>
+    <!-- Bright Earth Yellow -->
+    <radialGradient id="earthYellow" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#ffd147;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e8c547;stop-opacity:1" />
+    </radialGradient>
     
-    <!-- Soft glow filter -->
-    <filter id="softGlow">
-      <feGaussianBlur stdDeviation="8" result="blur"/>
+    <!-- Intense glow filter -->
+    <filter id="intenseGlow">
+      <feGaussianBlur stdDeviation="20" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 2 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Soft outer glow -->
+    <filter id="outerGlow">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
       <feMerge>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
     
-    <!-- Strong glow for key elements -->
-    <filter id="strongGlow">
-      <feGaussianBlur stdDeviation="15" result="blur"/>
+    <!-- Radiant glow for center -->
+    <filter id="radiantGlow">
+      <feGaussianBlur stdDeviation="25" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 3 0"/>
       <feMerge>
-        <feMergeNode in="blur"/>
+        <feMergeNode/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
   </defs>
   
-  <!-- Background with rounded corners for iOS -->
+  <!-- Background -->
   <rect width="1024" height="1024" fill="url(#bgGrad)" rx="226"/>
   
-  <!-- Outer circular frame (八卦外圈风格) -->
-  <circle cx="512" cy="512" r="380" fill="none" stroke="url(#champagneGold)" stroke-width="3" opacity="0.4" filter="url(#softGlow)"/>
-  <circle cx="512" cy="512" r="340" fill="none" stroke="url(#ochreRed)" stroke-width="2" opacity="0.3"/>
+  <!-- Radiating light beams from center (8 directions) -->
+  <g opacity="0.15">
+    <line x1="512" y1="512" x2="512" y2="80" stroke="url(#brilliantGold)" stroke-width="3" filter="url(#outerGlow)"/>
+    <line x1="512" y1="512" x2="756" y2="268" stroke="url(#brilliantGold)" stroke-width="2.5" filter="url(#outerGlow)"/>
+    <line x1="512" y1="512" x2="944" y2="512" stroke="url(#brilliantGold)" stroke-width="3" filter="url(#outerGlow)"/>
+    <line x1="512" y1="512" x2="756" y2="756" stroke="url(#brilliantGold)" stroke-width="2.5" filter="url(#outerGlow)"/>
+    <line x1="512" y1="512" x2="512" y2="944" stroke="url(#brilliantGold)" stroke-width="3" filter="url(#outerGlow)"/>
+    <line x1="512" y1="512" x2="268" y2="756" stroke="url(#brilliantGold)" stroke-width="2.5" filter="url(#outerGlow)"/>
+    <line x1="512" y1="512" x2="80" y2="512" stroke="url(#brilliantGold)" stroke-width="3" filter="url(#outerGlow)"/>
+    <line x1="512" y1="512" x2="268" y2="268" stroke="url(#brilliantGold)" stroke-width="2.5" filter="url(#outerGlow)"/>
+  </g>
   
-  <!-- Central Bagua-inspired symbol (简化的太极八卦元素) -->
-  <g filter="url(#strongGlow)">
-    <!-- Yin Yang inspired crescents (simplified) -->
+  <!-- Outer glow halo -->
+  <circle cx="512" cy="512" r="420" fill="none" stroke="url(#brilliantGold)" stroke-width="2" opacity="0.2" filter="url(#intenseGlow)"/>
+  <circle cx="512" cy="512" r="380" fill="none" stroke="url(#earthYellow)" stroke-width="1.5" opacity="0.3" filter="url(#outerGlow)"/>
+  
+  <!-- MAIN CENTRAL ELEMENT - Larger and more prominent -->
+  <g filter="url(#radiantGlow)">
+    <!-- Glowing background circle -->
+    <circle cx="512" cy="512" r="200" fill="url(#brilliantGold)" opacity="0.15"/>
+    
+    <!-- Large Yin Yang crescents -->
     <g>
-      <!-- Left crescent (Yin - Blue Stone) -->
-      <path d="M 380 512 
-               A 132 132 0 0 1 512 380
-               A 100 100 0 0 0 512 644
-               A 132 132 0 0 1 380 512 Z" 
-            fill="url(#stoneBlue)" opacity="0.9"/>
+      <!-- Left crescent (Yin - Luminous Blue) -->
+      <path d="M 330 512 
+               A 182 182 0 0 1 512 330
+               A 150 150 0 0 0 512 694
+               A 182 182 0 0 1 330 512 Z" 
+            fill="url(#stoneBlue)" opacity="0.95"/>
       
-      <!-- Right crescent (Yang - Ochre Red) -->
-      <path d="M 644 512
-               A 132 132 0 0 1 512 644
-               A 100 100 0 0 0 512 380
-               A 132 132 0 0 1 644 512 Z" 
-            fill="url(#ochreRed)" opacity="0.9"/>
+      <!-- Right crescent (Yang - Vibrant Red) -->
+      <path d="M 694 512
+               A 182 182 0 0 1 512 694
+               A 150 150 0 0 0 512 330
+               A 182 182 0 0 1 694 512 Z" 
+            fill="url(#ochreRed)" opacity="0.95"/>
     </g>
     
-    <!-- Central dividing line with gold accent -->
-    <line x1="512" y1="380" x2="512" y2="644" 
-          stroke="url(#champagneGold)" stroke-width="2" opacity="0.6"/>
+    <!-- Glowing dividing line -->
+    <line x1="512" y1="330" x2="512" y2="694" 
+          stroke="url(#brilliantGold)" stroke-width="3" opacity="0.8" filter="url(#intenseGlow)"/>
     
-    <!-- Small yin yang dots -->
-    <circle cx="512" cy="445" r="12" fill="url(#earthYellow)"/>
-    <circle cx="512" cy="579" r="12" fill="url(#champagneGold)"/>
+    <!-- Large glowing yin yang dots -->
+    <g filter="url(#intenseGlow)">
+      <circle cx="512" cy="420" r="20" fill="url(#earthYellow)"/>
+      <circle cx="512" cy="604" r="20" fill="url(#brilliantGold)"/>
+    </g>
+    
+    <!-- Inner glow on dots -->
+    <circle cx="512" cy="420" r="12" fill="#fff9e8" opacity="0.9"/>
+    <circle cx="512" cy="604" r="12" fill="#fff9e8" opacity="0.9"/>
   </g>
   
-  <!-- Eight trigram lines (simplified decorative elements) -->
-  <g stroke="url(#champagneGold)" stroke-width="2.5" opacity="0.5" filter="url(#softGlow)">
+  <!-- Outer circular frame with glow -->
+  <circle cx="512" cy="512" r="185" fill="none" stroke="url(#brilliantGold)" stroke-width="4" opacity="0.6" filter="url(#intenseGlow)"/>
+  <circle cx="512" cy="512" r="185" fill="none" stroke="url(#brilliantGold)" stroke-width="2" opacity="0.9"/>
+  
+  <!-- Eight mystical symbols at cardinal points (glowing) -->
+  <g fill="url(#earthYellow)" filter="url(#intenseGlow)">
     <!-- Top -->
-    <line x1="512" y1="100" x2="512" y2="150"/>
+    <circle cx="512" cy="200" r="8"/>
+    <circle cx="512" cy="200" r="4" fill="#fff9e8"/>
+    
     <!-- Top Right -->
-    <line x1="690" y1="192" x2="730" y2="225"/>
+    <circle cx="685" cy="327" r="7"/>
+    <circle cx="685" cy="327" r="3" fill="#fff9e8"/>
+    
     <!-- Right -->
-    <line x1="874" y1="512" x2="924" y2="512"/>
+    <circle cx="812" cy="512" r="8"/>
+    <circle cx="812" cy="512" r="4" fill="#fff9e8"/>
+    
     <!-- Bottom Right -->
-    <line x1="690" y1="832" x2="730" y2="799"/>
+    <circle cx="685" cy="697" r="7"/>
+    <circle cx="685" cy="697" r="3" fill="#fff9e8"/>
+    
     <!-- Bottom -->
-    <line x1="512" y1="924" x2="512" y2="874"/>
+    <circle cx="512" cy="824" r="8"/>
+    <circle cx="512" cy="824" r="4" fill="#fff9e8"/>
+    
     <!-- Bottom Left -->
-    <line x1="334" y1="832" x2="294" y2="799"/>
+    <circle cx="339" cy="697" r="7"/>
+    <circle cx="339" cy="697" r="3" fill="#fff9e8"/>
+    
     <!-- Left -->
-    <line x1="100" y1="512" x2="150" y2="512"/>
+    <circle cx="212" cy="512" r="8"/>
+    <circle cx="212" cy="512" r="4" fill="#fff9e8"/>
+    
     <!-- Top Left -->
-    <line x1="334" y1="192" x2="294" y2="225"/>
+    <circle cx="339" cy="327" r="7"/>
+    <circle cx="339" cy="327" r="3" fill="#fff9e8"/>
   </g>
   
-  <!-- Mystical star accents (simplified dunhuang motif) -->
-  <g fill="url(#earthYellow)" opacity="0.6">
-    <circle cx="512" cy="230" r="4"/>
-    <circle cx="666" cy="305" r="3"/>
-    <circle cx="740" cy="512" r="4"/>
-    <circle cx="666" cy="719" r="3"/>
-    <circle cx="512" cy="794" r="4"/>
-    <circle cx="358" cy="719" r="3"/>
-    <circle cx="284" cy="512" r="4"/>
-    <circle cx="358" cy="305" r="3"/>
+  <!-- Decorative stars with sparkle -->
+  <g fill="url(#brilliantGold)" opacity="0.7">
+    <circle cx="420" cy="280" r="3"/>
+    <circle cx="604" cy="280" r="3"/>
+    <circle cx="744" cy="420" r="3"/>
+    <circle cx="744" cy="604" r="3"/>
+    <circle cx="604" cy="744" r="3"/>
+    <circle cx="420" cy="744" r="3"/>
+    <circle cx="280" cy="604" r="3"/>
+    <circle cx="280" cy="420" r="3"/>
   </g>
   
-  <!-- Subtle pulsing animation on center -->
-  <circle cx="512" cy="512" r="12" fill="url(#champagneGold)" opacity="0.4">
+  <!-- Central radiant pulse animation -->
+  <g>
+    <circle cx="512" cy="512" r="16" fill="url(#brilliantGold)" opacity="0.6" filter="url(#radiantGlow)">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="16;24;16" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="512" cy="512" r="10" fill="#fff9e8" opacity="0.9">
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Outer ring pulse -->
+  <circle cx="512" cy="512" r="185" fill="none" stroke="url(#brilliantGold)" stroke-width="2" opacity="0.4">
     <animate attributeName="opacity" values="0.2;0.6;0.2" dur="4s" repeatCount="indefinite"/>
-    <animate attributeName="r" values="12;16;12" dur="4s" repeatCount="indefinite"/>
   </circle>
 </svg>
