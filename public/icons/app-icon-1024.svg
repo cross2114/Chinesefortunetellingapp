@@ -1,200 +1,49 @@
 <svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-  <!-- Premium Dunhuang Mystical Fortune Telling Icon -->
+  <!-- Luxury Minimalist Fortune App Icon -->
   <defs>
-    <!-- Deep cosmic background gradient -->
-    <radialGradient id="cosmicBg" cx="50%" cy="50%" r="70%">
-      <stop offset="0%" style="stop-color:#1a0f0a;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#0d0705;stop-opacity:1" />
+    <!-- Deep luxury black background -->
+    <linearGradient id="luxuryBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d0a08;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
-    </radialGradient>
-    
-    <!-- Premium gold gradient (Dunhuang gold) -->
-    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#F4D03F;stop-opacity:1" />
-      <stop offset="35%" style="stop-color:#E8B86D;stop-opacity:1" />
-      <stop offset="70%" style="stop-color:#D4A574;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#C8935F;stop-opacity:1" />
     </linearGradient>
     
-    <!-- Cinnabar red gradient (朱砂红) -->
-    <linearGradient id="cinnabarRed" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#E74C3C;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#C0392B;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#A93226;stop-opacity:1" />
+    <!-- Pure champagne gold -->
+    <linearGradient id="champagneGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f9f6f0;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#e8d5b5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d4af7a;stop-opacity:1" />
     </linearGradient>
     
-    <!-- Stone blue gradient (石青) -->
-    <linearGradient id="stoneBlue" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#5DADE2;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#3498DB;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#2874A6;stop-opacity:1" />
-    </linearGradient>
-    
-    <!-- Mystical glow effect -->
-    <filter id="mysticalGlow">
-      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+    <!-- Refined glow -->
+    <filter id="refinedGlow">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
       <feMerge>
-        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-    
-    <!-- Strong outer glow -->
-    <filter id="outerGlow">
-      <feGaussianBlur stdDeviation="12" result="blur"/>
-      <feFlood flood-color="#E8B86D" flood-opacity="0.6"/>
-      <feComposite in2="blur" operator="in" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-    
-    <!-- Ambient light gradient -->
-    <radialGradient id="ambientLight" cx="50%" cy="50%" r="60%">
-      <stop offset="0%" style="stop-color:#E8B86D;stop-opacity:0.2" />
-      <stop offset="100%" style="stop-color:#000000;stop-opacity:0" />
-    </radialGradient>
   </defs>
   
-  <!-- Background with rounded corners -->
-  <rect width="1024" height="1024" fill="url(#cosmicBg)" rx="180"/>
+  <!-- Pure black background -->
+  <rect width="1024" height="1024" fill="url(#luxuryBg)" rx="226"/>
   
-  <!-- Ambient glow layer -->
-  <circle cx="512" cy="512" r="480" fill="url(#ambientLight)"/>
-  
-  <!-- Outer decorative ring (八卦圆环) -->
-  <circle cx="512" cy="512" r="380" fill="none" stroke="url(#goldGradient)" stroke-width="2" opacity="0.3"/>
-  <circle cx="512" cy="512" r="390" fill="none" stroke="url(#goldGradient)" stroke-width="1" opacity="0.15"/>
-  
-  <!-- Main Taiji (Yin-Yang) symbol with premium styling -->
-  <g filter="url(#outerGlow)">
-    <!-- Yin-Yang circle background -->
-    <circle cx="512" cy="512" r="280" fill="url(#goldGradient)" opacity="0.08"/>
-    
-    <!-- Yang (light side - gold) -->
-    <path d="M 512 232
-             A 280 280 0 0 1 512 792
-             A 140 140 0 0 1 512 512
-             A 140 140 0 0 0 512 232 Z" 
-          fill="url(#goldGradient)"/>
-    
-    <!-- Yin (dark side - deep blue) -->
-    <path d="M 512 232
-             A 280 280 0 0 0 512 792
-             A 140 140 0 0 0 512 512
-             A 140 140 0 0 1 512 232 Z" 
-          fill="url(#stoneBlue)"/>
-    
-    <!-- Yang dot (dark in light) -->
-    <circle cx="512" cy="372" r="45" fill="url(#stoneBlue)"/>
-    <circle cx="512" cy="372" r="38" fill="#1a0f0a" opacity="0.3"/>
-    
-    <!-- Yin dot (light in dark) -->
-    <circle cx="512" cy="652" r="45" fill="url(#goldGradient)"/>
-    <circle cx="512" cy="652" r="38" fill="#F4D03F" opacity="0.4"/>
-    
-    <!-- Inner glow on Taiji -->
-    <circle cx="512" cy="512" r="280" fill="none" stroke="url(#goldGradient)" stroke-width="3" opacity="0.4"/>
+  <!-- Main Icon: Single elegant crescent -->
+  <g filter="url(#refinedGlow)">
+    <path d="M 512 240
+             A 260 260 0 0 1 512 784
+             A 230 230 0 0 0 512 240 Z" 
+          fill="url(#champagneGold)"/>
   </g>
   
-  <!-- Eight Trigrams (八卦符号) around the Taiji -->
-  <g filter="url(#mysticalGlow)" stroke-linecap="round">
-    <!-- 乾 (Heaven) - Top -->
-    <g transform="translate(512, 150)" stroke="url(#goldGradient)" stroke-width="6" opacity="0.85">
-      <line x1="-25" y1="0" x2="25" y2="0"/>
-      <line x1="-25" y1="12" x2="25" y2="12"/>
-      <line x1="-25" y1="24" x2="25" y2="24"/>
-    </g>
-    
-    <!-- 坤 (Earth) - Bottom -->
-    <g transform="translate(512, 874)" stroke="url(#cinnabarRed)" stroke-width="6" opacity="0.85">
-      <line x1="-25" y1="0" x2="-5" y2="0"/>
-      <line x1="5" y1="0" x2="25" y2="0"/>
-      <line x1="-25" y1="12" x2="-5" y2="12"/>
-      <line x1="5" y1="12" x2="25" y2="12"/>
-      <line x1="-25" y1="24" x2="-5" y2="24"/>
-      <line x1="5" y1="24" x2="25" y2="24"/>
-    </g>
-    
-    <!-- 離 (Fire) - Right -->
-    <g transform="translate(874, 512)" stroke="url(#cinnabarRed)" stroke-width="6" opacity="0.85">
-      <line x1="-25" y1="0" x2="25" y2="0"/>
-      <line x1="-25" y1="12" x2="-5" y2="12"/>
-      <line x1="5" y1="12" x2="25" y2="12"/>
-      <line x1="-25" y1="24" x2="25" y2="24"/>
-    </g>
-    
-    <!-- 坎 (Water) - Left -->
-    <g transform="translate(150, 512)" stroke="url(#stoneBlue)" stroke-width="6" opacity="0.85">
-      <line x1="-25" y1="0" x2="-5" y2="0"/>
-      <line x1="5" y1="0" x2="25" y2="0"/>
-      <line x1="-25" y1="12" x2="25" y2="12"/>
-      <line x1="-25" y1="24" x2="-5" y2="24"/>
-      <line x1="5" y1="24" x2="25" y2="24"/>
-    </g>
-    
-    <!-- 震 (Thunder) - Top-Right -->
-    <g transform="translate(734, 290) rotate(45)" stroke="url(#goldGradient)" stroke-width="5" opacity="0.7">
-      <line x1="-20" y1="0" x2="-5" y2="0"/>
-      <line x1="5" y1="0" x2="20" y2="0"/>
-      <line x1="-20" y1="10" x2="-5" y2="10"/>
-      <line x1="5" y1="10" x2="20" y2="10"/>
-      <line x1="-20" y1="20" x2="20" y2="20"/>
-    </g>
-    
-    <!-- 巽 (Wind) - Top-Left -->
-    <g transform="translate(290, 290) rotate(-45)" stroke="url(#stoneBlue)" stroke-width="5" opacity="0.7">
-      <line x1="-20" y1="0" x2="20" y2="0"/>
-      <line x1="-20" y1="10" x2="20" y2="10"/>
-      <line x1="-20" y1="20" x2="-5" y2="20"/>
-      <line x1="5" y1="20" x2="20" y2="20"/>
-    </g>
-    
-    <!-- 艮 (Mountain) - Bottom-Right -->
-    <g transform="translate(734, 734) rotate(-45)" stroke="url(#cinnabarRed)" stroke-width="5" opacity="0.7">
-      <line x1="-20" y1="0" x2="20" y2="0"/>
-      <line x1="-20" y1="10" x2="-5" y2="10"/>
-      <line x1="5" y1="10" x2="20" y2="10"/>
-      <line x1="-20" y1="20" x2="-5" y2="20"/>
-      <line x1="5" y1="20" x2="20" y2="20"/>
-    </g>
-    
-    <!-- 兑 (Lake) - Bottom-Left -->
-    <g transform="translate(290, 734) rotate(45)" stroke="url(#goldGradient)" stroke-width="5" opacity="0.7">
-      <line x1="-20" y1="0" x2="-5" y2="0"/>
-      <line x1="5" y1="0" x2="20" y2="0"/>
-      <line x1="-20" y1="10" x2="20" y2="10"/>
-      <line x1="-20" y1="20" x2="20" y2="20"/>
-    </g>
+  <!-- Minimalist star accent -->
+  <g filter="url(#refinedGlow)">
+    <circle cx="670" cy="480" r="8" fill="url(#champagneGold)"/>
+    <line x1="670" y1="455" x2="670" y2="505" stroke="url(#champagneGold)" stroke-width="1.5" opacity="0.6"/>
+    <line x1="645" y1="480" x2="695" y2="480" stroke="url(#champagneGold)" stroke-width="1.5" opacity="0.6"/>
   </g>
   
-  <!-- Mystical star particles (cosmic dust) -->
-  <g fill="url(#goldGradient)" opacity="0.4">
-    <circle cx="420" cy="220" r="3"/>
-    <circle cx="604" cy="220" r="2.5"/>
-    <circle cx="804" cy="420" r="3"/>
-    <circle cx="804" cy="604" r="2"/>
-    <circle cx="220" cy="420" r="2.5"/>
-    <circle cx="220" cy="604" r="3"/>
-    <circle cx="420" cy="804" r="2"/>
-    <circle cx="604" cy="804" r="3"/>
-  </g>
-  
-  <!-- Pulsing central energy point -->
-  <circle cx="512" cy="512" r="6" fill="#F4D03F" opacity="0.9">
-    <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite"/>
-    <animate attributeName="r" values="5;7;5" dur="3s" repeatCount="indefinite"/>
+  <!-- Pulsing animation -->
+  <circle cx="670" cy="480" r="8" fill="#f9f6f0" opacity="0.8">
+    <animate attributeName="opacity" values="0.3;0.9;0.3" dur="3s" repeatCount="indefinite"/>
   </circle>
-  
-  <!-- Subtle corner accents (四象) -->
-  <g fill="url(#goldGradient)" opacity="0.2">
-    <circle cx="200" cy="200" r="4"/>
-    <circle cx="824" cy="200" r="4"/>
-    <circle cx="200" cy="824" r="4"/>
-    <circle cx="824" cy="824" r="4"/>
-  </g>
-  
-  <!-- Final premium border -->
-  <rect width="1024" height="1024" fill="none" stroke="url(#goldGradient)" stroke-width="1" opacity="0.1" rx="180"/>
 </svg>
