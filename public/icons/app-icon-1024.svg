@@ -1,22 +1,50 @@
 <svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-  <!-- Luxury Minimalist Fortune App Icon -->
+  <!-- Dunhuang Fortune App Icon - Luxury Mystical Design -->
   <defs>
-    <!-- Deep luxury black background -->
-    <linearGradient id="luxuryBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0d0a08;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
+    <!-- Deep mystical black background gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a0f0a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a0503;stop-opacity:1" />
     </linearGradient>
     
-    <!-- Pure champagne gold -->
+    <!-- Dunhuang Ochre Red (赭石红) -->
+    <linearGradient id="ochreRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#c8754e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a85a3b;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Stone Blue (石青) with gold shimmer -->
+    <linearGradient id="stoneBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a6fa5;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#3d5a7a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2d4a6a;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Champagne Gold (香槟金) -->
     <linearGradient id="champagneGold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#f9f6f0;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#e8d5b5;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#d4af7a;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#f4e8d0;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#d4af7a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b8935a;stop-opacity:1" />
     </linearGradient>
     
-    <!-- Refined glow -->
-    <filter id="refinedGlow">
-      <feGaussianBlur stdDeviation="10" result="blur"/>
+    <!-- Earth Yellow (土黄) -->
+    <linearGradient id="earthYellow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8c547;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d4a832;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Soft glow filter -->
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Strong glow for key elements -->
+    <filter id="strongGlow">
+      <feGaussianBlur stdDeviation="15" result="blur"/>
       <feMerge>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
@@ -24,26 +52,76 @@
     </filter>
   </defs>
   
-  <!-- Pure black background -->
-  <rect width="1024" height="1024" fill="url(#luxuryBg)" rx="226"/>
+  <!-- Background with rounded corners for iOS -->
+  <rect width="1024" height="1024" fill="url(#bgGrad)" rx="226"/>
   
-  <!-- Main Icon: Single elegant crescent -->
-  <g filter="url(#refinedGlow)">
-    <path d="M 512 240
-             A 260 260 0 0 1 512 784
-             A 230 230 0 0 0 512 240 Z" 
-          fill="url(#champagneGold)"/>
+  <!-- Outer circular frame (八卦外圈风格) -->
+  <circle cx="512" cy="512" r="380" fill="none" stroke="url(#champagneGold)" stroke-width="3" opacity="0.4" filter="url(#softGlow)"/>
+  <circle cx="512" cy="512" r="340" fill="none" stroke="url(#ochreRed)" stroke-width="2" opacity="0.3"/>
+  
+  <!-- Central Bagua-inspired symbol (简化的太极八卦元素) -->
+  <g filter="url(#strongGlow)">
+    <!-- Yin Yang inspired crescents (simplified) -->
+    <g>
+      <!-- Left crescent (Yin - Blue Stone) -->
+      <path d="M 380 512 
+               A 132 132 0 0 1 512 380
+               A 100 100 0 0 0 512 644
+               A 132 132 0 0 1 380 512 Z" 
+            fill="url(#stoneBlue)" opacity="0.9"/>
+      
+      <!-- Right crescent (Yang - Ochre Red) -->
+      <path d="M 644 512
+               A 132 132 0 0 1 512 644
+               A 100 100 0 0 0 512 380
+               A 132 132 0 0 1 644 512 Z" 
+            fill="url(#ochreRed)" opacity="0.9"/>
+    </g>
+    
+    <!-- Central dividing line with gold accent -->
+    <line x1="512" y1="380" x2="512" y2="644" 
+          stroke="url(#champagneGold)" stroke-width="2" opacity="0.6"/>
+    
+    <!-- Small yin yang dots -->
+    <circle cx="512" cy="445" r="12" fill="url(#earthYellow)"/>
+    <circle cx="512" cy="579" r="12" fill="url(#champagneGold)"/>
   </g>
   
-  <!-- Minimalist star accent -->
-  <g filter="url(#refinedGlow)">
-    <circle cx="670" cy="480" r="8" fill="url(#champagneGold)"/>
-    <line x1="670" y1="455" x2="670" y2="505" stroke="url(#champagneGold)" stroke-width="1.5" opacity="0.6"/>
-    <line x1="645" y1="480" x2="695" y2="480" stroke="url(#champagneGold)" stroke-width="1.5" opacity="0.6"/>
+  <!-- Eight trigram lines (simplified decorative elements) -->
+  <g stroke="url(#champagneGold)" stroke-width="2.5" opacity="0.5" filter="url(#softGlow)">
+    <!-- Top -->
+    <line x1="512" y1="100" x2="512" y2="150"/>
+    <!-- Top Right -->
+    <line x1="690" y1="192" x2="730" y2="225"/>
+    <!-- Right -->
+    <line x1="874" y1="512" x2="924" y2="512"/>
+    <!-- Bottom Right -->
+    <line x1="690" y1="832" x2="730" y2="799"/>
+    <!-- Bottom -->
+    <line x1="512" y1="924" x2="512" y2="874"/>
+    <!-- Bottom Left -->
+    <line x1="334" y1="832" x2="294" y2="799"/>
+    <!-- Left -->
+    <line x1="100" y1="512" x2="150" y2="512"/>
+    <!-- Top Left -->
+    <line x1="334" y1="192" x2="294" y2="225"/>
   </g>
   
-  <!-- Pulsing animation -->
-  <circle cx="670" cy="480" r="8" fill="#f9f6f0" opacity="0.8">
-    <animate attributeName="opacity" values="0.3;0.9;0.3" dur="3s" repeatCount="indefinite"/>
+  <!-- Mystical star accents (simplified dunhuang motif) -->
+  <g fill="url(#earthYellow)" opacity="0.6">
+    <circle cx="512" cy="230" r="4"/>
+    <circle cx="666" cy="305" r="3"/>
+    <circle cx="740" cy="512" r="4"/>
+    <circle cx="666" cy="719" r="3"/>
+    <circle cx="512" cy="794" r="4"/>
+    <circle cx="358" cy="719" r="3"/>
+    <circle cx="284" cy="512" r="4"/>
+    <circle cx="358" cy="305" r="3"/>
+  </g>
+  
+  <!-- Subtle pulsing animation on center -->
+  <circle cx="512" cy="512" r="12" fill="url(#champagneGold)" opacity="0.4">
+    <animate attributeName="opacity" values="0.2;0.6;0.2" dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="r" values="12;16;12" dur="4s" repeatCount="indefinite"/>
   </circle>
 </svg>
