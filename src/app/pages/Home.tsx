@@ -176,7 +176,7 @@ export function Home() {
     <div 
       className="relative w-full bg-gradient-to-br from-[#1a1510] via-[#0f0a08] to-[#1a0f0a] overflow-hidden touch-none"
       style={{ 
-        minHeight: `${viewportHeight}px`,
+        height: `${viewportHeight}px`,
         paddingTop: 'env(safe-area-inset-top)',
         paddingBottom: 'env(safe-area-inset-bottom)',
       }}
@@ -228,14 +228,14 @@ export function Home() {
         <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-[#D4A76A]/60 group-hover:text-[#D4A76A] transition-colors" />
       </button>
 
-      {/* Main content - Optimized spacing for mobile */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-between px-4 md:px-6 py-safe">
+      {/* Main content - Responsive spacing */}
+      <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 md:px-6 py-4 md:py-8">
         
-        {/* Logo and Title - Compact on mobile */}
+        {/* Logo and Title - Responsive sizing */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex items-center gap-3 md:gap-4 pt-4 pb-3 md:pt-8 md:pb-6"
+          className="flex items-center gap-3 md:gap-4 mb-4 md:mb-10 mt-4 md:mt-0"
         >
           {/* Logo */}
           <motion.div 
@@ -271,14 +271,14 @@ export function Home() {
             <h1 className="text-base md:text-3xl tracking-[0.3em] text-[#D4A76A]" style={{ fontWeight: 300 }}>
               MYSTIC ARTS
             </h1>
-            <p className="text-[9px] md:text-sm text-[#C19A6B]/70 tracking-[0.2em] -mt-0.5">
+            <p className="text-[9px] md:text-sm text-[#C19A6B]/70 tracking-[0.2em] -mt-0.5 md:-mt-1">
               <ChineseCharacter char="問天知命" className="text-[9px] md:text-sm" />
             </p>
           </div>
         </motion.div>
 
-        {/* Large centered card - Better mobile sizing */}
-        <div className="relative w-full max-w-6xl flex-1 flex items-center justify-center py-4 md:py-8" style={{ perspective: '2000px' }}>
+        {/* Large centered card - Responsive height */}
+        <div className="relative w-full max-w-6xl flex-1 flex items-center justify-center min-h-0" style={{ perspective: '2000px' }}>
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={activeIndex}
@@ -293,7 +293,7 @@ export function Home() {
                 scale: { duration: 0.3 },
                 rotateY: { duration: 0.5 },
               }}
-              className="w-full h-full max-h-[500px] md:max-h-[60vh]"
+              className="w-full h-full max-h-[500px] md:max-h-[55vh]"
               drag="x"
               dragConstraints={{ left: -1000, right: 1000 }}
               dragElastic={0.5}
