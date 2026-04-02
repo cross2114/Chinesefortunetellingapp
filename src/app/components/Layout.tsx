@@ -17,12 +17,19 @@ export function Layout({ children, showBackButton = false, title }: LayoutProps)
     <div className="min-h-screen" style={{ backgroundColor: '#0f0a08', color: '#ffffff' }}>
       {/* Header - Fixed positioning for mobile */}
       <header 
-        className="border-b border-[#D4A76A]/20 fixed top-0 left-0 right-0 z-50" 
+        className="border-b border-[#D4A76A]/20"
         style={{ 
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 9999,
           backgroundColor: 'rgba(26, 21, 16, 0.95)', 
           backdropFilter: 'blur(12px)', 
           WebkitBackdropFilter: 'blur(12px)',
-          paddingTop: 'env(safe-area-inset-top)'
+          paddingTop: 'env(safe-area-inset-top)',
+          WebkitTransform: 'translateZ(0)',
+          transform: 'translateZ(0)'
         }}
       >
         <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
