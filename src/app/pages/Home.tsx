@@ -229,13 +229,13 @@ export function Home() {
       </button>
 
       {/* Main content - Responsive spacing */}
-      <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 md:px-6 py-4 md:py-8">
+      <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 md:px-6 pt-0 pb-6 md:py-8 -mt-8 md:mt-0">
         
         {/* Logo and Title - Responsive sizing */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex items-center gap-3 md:gap-4 mb-4 md:mb-10 mt-4 md:mt-0"
+          className="flex items-center gap-3 md:gap-4 mb-4 md:mb-10"
         >
           {/* Logo */}
           <motion.div 
